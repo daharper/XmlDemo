@@ -45,7 +45,7 @@ object AboutForm: TAboutForm
         'Its purpose is to find what works well, what is too complex,'
         'and what needs improving. It drives change in the XML types.'
         ''
-        'The examples progress from a simple XML construction via a DSL,'
+        'The examples progress from simple XML construction via a DSL,'
         'to progressively mixing in and using a Fluent Builder approach.'
         ''
         'The last examples demonstrate creating a TBvElement from '
