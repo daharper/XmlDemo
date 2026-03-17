@@ -1,0 +1,3239 @@
+<?xml version="1.0"?>
+<UNIT line="1" col="1" name="Data.Repository">
+  <INTERFACE begin_line="3" begin_col="1" end_line="70" end_col="1">
+    <USES begin_line="5" begin_col="1" end_line="8" end_col="1">
+      <UNIT line="6" col="3" name="System.SysUtils"/>
+      <UNIT line="6" col="20" name="System.Generics.Collections"/>
+      <UNIT line="6" col="49" name="Data.CodeBase"/>
+    </USES>
+    <TYPESECTION line="8" col="1">
+      <TYPEDECL begin_line="9" begin_col="3" end_line="9" end_col="42" name="TCBFields">
+        <TYPE line="9" col="15" name="TDictionary">
+          <TYPEARGS line="9" col="27">
+            <TYPE line="9" col="27" name="string"/>
+            <TYPE line="9" col="35" name="FIELD4"/>
+          </TYPEARGS>
+        </TYPE>
+      </TYPEDECL>
+      <TYPEDECL begin_line="10" begin_col="3" end_line="10" end_col="32" name="TCBFieldNames">
+        <TYPE line="10" col="19" name="TList">
+          <TYPEARGS line="10" col="25">
+            <TYPE line="10" col="25" name="string"/>
+          </TYPEARGS>
+        </TYPE>
+      </TYPEDECL>
+      <TYPEDECL begin_line="14" begin_col="3" end_line="25" end_col="6" name="TRecordAttribute">
+        <TYPE line="14" col="22" type="class">
+          <TYPE line="14" col="28" name="TCustomAttribute"/>
+          <PRIVATE line="15" col="3" visibility="true">
+            <FIELD line="16" col="5">
+              <NAME line="16" col="5" value="FFilename"/>
+              <TYPE line="16" col="16" name="string"/>
+            </FIELD>
+            <FIELD line="17" col="5">
+              <NAME line="17" col="5" value="FIndexName"/>
+              <TYPE line="17" col="17" name="string"/>
+            </FIELD>
+            <METHOD begin_line="18" begin_col="5" end_line="19" end_col="3" kind="function" name="GetUseIndex">
+              <RETURNTYPE line="18" col="27">
+                <TYPE line="18" col="27" name="boolean"/>
+              </RETURNTYPE>
+            </METHOD>
+          </PRIVATE>
+          <PUBLIC line="19" col="3" visibility="true">
+            <METHOD begin_line="20" begin_col="5" end_line="22" end_col="5" kind="constructor" name="Create">
+              <PARAMETERS line="20" col="23">
+                <PARAMETER line="20" col="30" kind="const">
+                  <NAME line="20" col="30" value="AFilename"/>
+                  <TYPE line="20" col="41" name="string"/>
+                </PARAMETER>
+                <PARAMETER line="20" col="49">
+                  <NAME line="20" col="49" value="AIndexName"/>
+                  <TYPE line="20" col="61" name="string"/>
+                  <EXPRESSION line="20" col="70">
+                    <LITERAL line="20" col="72" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+            </METHOD>
+            <PROPERTY line="22" col="5" name="Filename">
+              <TYPE line="22" col="24" name="string"/>
+              <READ line="22" col="31">
+                <IDENTIFIER line="22" col="36" name="FFilename"/>
+              </READ>
+              <WRITE line="22" col="46">
+                <IDENTIFIER line="22" col="52" name="FFilename"/>
+              </WRITE>
+            </PROPERTY>
+            <PROPERTY line="23" col="5" name="IndexName">
+              <TYPE line="23" col="25" name="string"/>
+              <READ line="23" col="32">
+                <IDENTIFIER line="23" col="37" name="FIndexName"/>
+              </READ>
+              <WRITE line="23" col="48">
+                <IDENTIFIER line="23" col="54" name="FIndexName"/>
+              </WRITE>
+            </PROPERTY>
+            <PROPERTY line="24" col="5" name="UseIndex">
+              <TYPE line="24" col="24" name="boolean"/>
+              <READ line="24" col="32">
+                <IDENTIFIER line="24" col="37" name="GetUseIndex"/>
+              </READ>
+            </PROPERTY>
+          </PUBLIC>
+        </TYPE>
+      </TYPEDECL>
+      <TYPEDECL begin_line="29" begin_col="3" end_line="68" end_col="6" name="TRepository">
+        <TYPEPARAMS line="29" col="14">
+          <TYPEPARAM line="29" col="15">
+            <TYPE line="29" col="15" name="T"/>
+            <CONSTRAINTS line="29" col="17">
+              <RECORDCONSTRAINT line="29" col="17"/>
+            </CONSTRAINTS>
+          </TYPEPARAM>
+        </TYPEPARAMS>
+        <TYPE line="29" col="27" type="class" class="true">
+          <PRIVATE line="30" col="3" visibility="true">
+            <FIELD line="31" col="5">
+              <NAME line="31" col="5" value="FFields"/>
+              <TYPE line="31" col="14" name="TCBFields"/>
+            </FIELD>
+            <FIELD line="33" col="7">
+              <NAME line="33" col="7" value="FFileName"/>
+              <TYPE line="33" col="18" name="string"/>
+            </FIELD>
+            <FIELD line="34" col="7">
+              <NAME line="34" col="7" value="FIndexName"/>
+              <TYPE line="34" col="19" name="string"/>
+            </FIELD>
+            <FIELD line="35" col="7">
+              <NAME line="35" col="7" value="FUseIndex"/>
+              <TYPE line="35" col="18" name="boolean"/>
+            </FIELD>
+            <FIELD line="36" col="7">
+              <NAME line="36" col="7" value="FFieldNames"/>
+              <TYPE line="36" col="20" name="TCBFieldNames"/>
+            </FIELD>
+          </PRIVATE>
+          <PROTECTED line="37" col="3" visibility="true">
+            <FIELD line="38" col="5">
+              <NAME line="38" col="5" value="FTable"/>
+              <TYPE line="38" col="13" name="DATA4"/>
+            </FIELD>
+            <METHOD begin_line="40" begin_col="5" end_line="41" end_col="3" kind="procedure" name="Assign">
+              <PARAMETERS line="40" col="21">
+                <PARAMETER line="40" col="26" kind="var">
+                  <NAME line="40" col="26" value="AItem"/>
+                  <TYPE line="40" col="33" name="T"/>
+                </PARAMETER>
+              </PARAMETERS>
+            </METHOD>
+          </PROTECTED>
+          <PUBLIC line="41" col="3" visibility="true">
+            <METHOD begin_line="42" begin_col="5" end_line="43" end_col="5" kind="constructor" name="Create"/>
+            <METHOD begin_line="43" begin_col="5" end_line="45" end_col="5" kind="destructor" name="Destroy" methodbinding="override"/>
+            <METHOD begin_line="45" begin_col="5" end_line="46" end_col="5" kind="function" name="Read">
+              <RETURNTYPE line="45" col="19">
+                <TYPE line="45" col="19" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="46" begin_col="5" end_line="47" end_col="5" kind="function" name="Eof">
+              <RETURNTYPE line="46" col="19">
+                <TYPE line="46" col="19" name="boolean"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="47" begin_col="5" end_line="48" end_col="5" kind="function" name="HasData">
+              <RETURNTYPE line="47" col="23">
+                <TYPE line="47" col="23" name="boolean"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="48" begin_col="5" end_line="49" end_col="5" kind="function" name="GetFirst">
+              <RETURNTYPE line="48" col="24">
+                <TYPE line="48" col="24" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="49" begin_col="5" end_line="50" end_col="5" kind="function" name="GetLast">
+              <RETURNTYPE line="49" col="23">
+                <TYPE line="49" col="23" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="50" begin_col="5" end_line="51" end_col="5" kind="function" name="GetNext">
+              <RETURNTYPE line="50" col="23">
+                <TYPE line="50" col="23" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="51" begin_col="5" end_line="52" end_col="5" kind="function" name="GetById">
+              <PARAMETERS line="51" col="21">
+                <PARAMETER line="51" col="22">
+                  <NAME line="51" col="22" value="aId"/>
+                  <TYPE line="51" col="27" name="integer"/>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="51" col="37">
+                <TYPE line="51" col="37" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="52" begin_col="5" end_line="53" end_col="5" kind="function" name="Exists" overload="true">
+              <PARAMETERS line="52" col="20">
+                <PARAMETER line="52" col="21">
+                  <NAME line="52" col="21" value="aId"/>
+                  <TYPE line="52" col="26" name="integer"/>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="52" col="36">
+                <TYPE line="52" col="36" name="boolean"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="53" begin_col="5" end_line="54" end_col="5" kind="function" name="Exists" overload="true">
+              <PARAMETERS line="53" col="20">
+                <PARAMETER line="53" col="21">
+                  <NAME line="53" col="21" value="aPredicate"/>
+                  <TYPE line="53" col="33" name="TFunc">
+                    <TYPEARGS line="53" col="39">
+                      <TYPE line="53" col="39" name="T"/>
+                      <TYPE line="53" col="42" name="Boolean"/>
+                    </TYPEARGS>
+                  </TYPE>
+                </PARAMETER>
+                <PARAMETER line="53" col="52">
+                  <NAME line="53" col="52" value="aIndex"/>
+                  <TYPE line="53" col="60" name="string"/>
+                  <EXPRESSION line="53" col="69">
+                    <LITERAL line="53" col="71" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="53" col="74">
+                <TYPE line="53" col="74" name="boolean"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="54" begin_col="5" end_line="55" end_col="5" kind="function" name="GetAll">
+              <PARAMETERS line="54" col="20">
+                <PARAMETER line="54" col="21">
+                  <NAME line="54" col="21" value="aIndex"/>
+                  <TYPE line="54" col="28" name="string"/>
+                  <EXPRESSION line="54" col="37">
+                    <LITERAL line="54" col="39" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="54" col="42">
+                <TYPE line="54" col="42" name="TList">
+                  <TYPEARGS line="54" col="48">
+                    <TYPE line="54" col="48" name="T"/>
+                  </TYPEARGS>
+                </TYPE>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="55" begin_col="5" end_line="56" end_col="5" kind="function" name="Where" overload="true">
+              <PARAMETERS line="55" col="19">
+                <PARAMETER line="55" col="20">
+                  <NAME line="55" col="20" value="aPredicate"/>
+                  <TYPE line="55" col="32" name="TFunc">
+                    <TYPEARGS line="55" col="38">
+                      <TYPE line="55" col="38" name="T"/>
+                      <TYPE line="55" col="41" name="boolean"/>
+                    </TYPEARGS>
+                  </TYPE>
+                </PARAMETER>
+                <PARAMETER line="55" col="51">
+                  <NAME line="55" col="51" value="aIndex"/>
+                  <TYPE line="55" col="59" name="string"/>
+                  <EXPRESSION line="55" col="68">
+                    <LITERAL line="55" col="70" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="55" col="73">
+                <TYPE line="55" col="73" name="TList">
+                  <TYPEARGS line="55" col="79">
+                    <TYPE line="55" col="79" name="T"/>
+                  </TYPEARGS>
+                </TYPE>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="56" begin_col="5" end_line="57" end_col="5" kind="function" name="Where" overload="true">
+              <PARAMETERS line="56" col="19">
+                <PARAMETER line="56" col="20">
+                  <NAME line="56" col="20" value="aValue"/>
+                  <TYPE line="56" col="28" name="string"/>
+                </PARAMETER>
+                <PARAMETER line="56" col="36">
+                  <NAME line="56" col="36" value="aIndex"/>
+                  <TYPE line="56" col="44" name="string"/>
+                  <EXPRESSION line="56" col="53">
+                    <LITERAL line="56" col="55" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="56" col="58">
+                <TYPE line="56" col="58" name="TList">
+                  <TYPEARGS line="56" col="64">
+                    <TYPE line="56" col="64" name="T"/>
+                  </TYPEARGS>
+                </TYPE>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="57" begin_col="5" end_line="59" end_col="5" kind="function" name="First" overload="true">
+              <PARAMETERS line="57" col="19">
+                <PARAMETER line="57" col="20">
+                  <NAME line="57" col="20" value="aPredicate"/>
+                  <TYPE line="57" col="32" name="TFunc">
+                    <TYPEARGS line="57" col="38">
+                      <TYPE line="57" col="38" name="T"/>
+                      <TYPE line="57" col="41" name="boolean"/>
+                    </TYPEARGS>
+                  </TYPE>
+                </PARAMETER>
+                <PARAMETER line="57" col="51">
+                  <NAME line="57" col="51" value="aIndex"/>
+                  <TYPE line="57" col="59" name="string"/>
+                  <EXPRESSION line="57" col="68">
+                    <LITERAL line="57" col="70" value="" type="string"/>
+                  </EXPRESSION>
+                </PARAMETER>
+              </PARAMETERS>
+              <RETURNTYPE line="57" col="73">
+                <TYPE line="57" col="73" name="T"/>
+              </RETURNTYPE>
+            </METHOD>
+            <METHOD begin_line="59" begin_col="5" end_line="60" end_col="5" kind="procedure" name="First" overload="true"/>
+            <METHOD begin_line="60" begin_col="5" end_line="61" end_col="5" kind="procedure" name="Last"/>
+            <METHOD begin_line="61" begin_col="5" end_line="63" end_col="5" kind="procedure" name="Next"/>
+            <METHOD begin_line="63" begin_col="5" end_line="64" end_col="5" kind="procedure" name="Update">
+              <PARAMETERS line="63" col="21">
+                <PARAMETER line="63" col="26" kind="var">
+                  <NAME line="63" col="26" value="AItem"/>
+                  <TYPE line="63" col="33" name="T"/>
+                </PARAMETER>
+                <PARAMETER line="63" col="36">
+                  <NAME line="63" col="36" value="aId"/>
+                  <TYPE line="63" col="41" name="integer"/>
+                </PARAMETER>
+              </PARAMETERS>
+            </METHOD>
+            <METHOD begin_line="64" begin_col="5" end_line="66" end_col="5" kind="procedure" name="Append" methodbinding="virtual">
+              <PARAMETERS line="64" col="21">
+                <PARAMETER line="64" col="26" kind="var">
+                  <NAME line="64" col="26" value="AItem"/>
+                  <TYPE line="64" col="33" name="T"/>
+                </PARAMETER>
+              </PARAMETERS>
+            </METHOD>
+            <METHOD begin_line="66" begin_col="5" end_line="67" end_col="5" class="true" kind="constructor" name="Create"/>
+            <METHOD begin_line="67" begin_col="5" end_line="68" end_col="3" class="true" kind="destructor" name="Destroy"/>
+          </PUBLIC>
+        </TYPE>
+      </TYPEDECL>
+    </TYPESECTION>
+  </INTERFACE>
+  <IMPLEMENTATION begin_line="70" begin_col="1" end_line="466" end_col="1">
+    <USES begin_line="72" begin_col="1" end_line="79" end_col="1">
+      <UNIT line="73" col="3" name="System.StrUtils"/>
+      <UNIT line="73" col="20" name="System.Generics.Defaults"/>
+      <UNIT line="73" col="46" name="System.Rtti"/>
+      <UNIT line="73" col="59" name="System.IOUtils"/>
+      <UNIT line="74" col="3" name="Data.Database"/>
+      <UNIT line="74" col="18" name="Data.Properties"/>
+      <UNIT line="74" col="35" name="Utils.Language"/>
+    </USES>
+    <METHOD begin_line="79" begin_col="1" end_line="100" end_col="1" class="true" name="TRepository&lt;T&gt;.Create" kind="constructor">
+      <VARIABLES line="80" col="1">
+        <VARIABLE line="81" col="3">
+          <NAME line="81" col="3" value="Context"/>
+          <TYPE line="81" col="12" name="TRttiContext"/>
+        </VARIABLE>
+        <VARIABLE line="82" col="3">
+          <NAME line="82" col="3" value="RecType"/>
+          <TYPE line="82" col="12" name="TRttiType"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="83" begin_col="1" end_line="97" end_col="4">
+        <ASSIGN line="84" col="3">
+          <LHS line="84" col="3">
+            <IDENTIFIER line="84" col="3" name="RecType"/>
+          </LHS>
+          <RHS line="84" col="14">
+            <EXPRESSION line="84" col="14">
+              <CALL line="84" col="14">
+                <DOT line="84" col="21">
+                  <IDENTIFIER line="84" col="14" name="Context"/>
+                  <IDENTIFIER line="84" col="22" name="GetType"/>
+                </DOT>
+                <EXPRESSIONS line="84" col="30">
+                  <EXPRESSION line="84" col="30">
+                    <CALL line="84" col="30">
+                      <IDENTIFIER line="84" col="30" name="TypeInfo"/>
+                      <EXPRESSIONS line="84" col="39">
+                        <EXPRESSION line="84" col="39">
+                          <IDENTIFIER line="84" col="39" name="T"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <VARIABLES line="86" col="3">
+          <VARIABLE line="86" col="7">
+            <NAME line="86" col="7" value="attr"/>
+          </VARIABLE>
+          <ASSIGN line="0" col="0">
+            <EXPRESSION line="86" col="15">
+              <DOT line="86" col="22">
+                <IDENTIFIER line="86" col="15" name="RecType"/>
+                <GENERIC line="86" col="15">
+                  <IDENTIFIER line="86" col="23" name="GetAttribute"/>
+                  <TYPEARGS line="86" col="36">
+                    <TYPE line="86" col="36" name="TRecordAttribute"/>
+                  </TYPEARGS>
+                </GENERIC>
+              </DOT>
+            </EXPRESSION>
+          </ASSIGN>
+        </VARIABLES>
+        <ASSIGN line="88" col="3">
+          <LHS line="88" col="3">
+            <IDENTIFIER line="88" col="3" name="FFilename"/>
+          </LHS>
+          <RHS line="88" col="17">
+            <EXPRESSION line="88" col="17">
+              <DOT line="88" col="21">
+                <IDENTIFIER line="88" col="17" name="attr"/>
+                <IDENTIFIER line="88" col="22" name="Filename"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="89" col="3">
+          <LHS line="89" col="3">
+            <IDENTIFIER line="89" col="3" name="FIndexName"/>
+          </LHS>
+          <RHS line="89" col="17">
+            <EXPRESSION line="89" col="17">
+              <DOT line="89" col="21">
+                <IDENTIFIER line="89" col="17" name="attr"/>
+                <IDENTIFIER line="89" col="22" name="IndexName"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="90" col="3">
+          <LHS line="90" col="3">
+            <IDENTIFIER line="90" col="3" name="FUseIndex"/>
+          </LHS>
+          <RHS line="90" col="17">
+            <EXPRESSION line="90" col="17">
+              <DOT line="90" col="21">
+                <IDENTIFIER line="90" col="17" name="attr"/>
+                <IDENTIFIER line="90" col="22" name="UseIndex"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="92" col="3">
+          <LHS line="92" col="3">
+            <IDENTIFIER line="92" col="3" name="FFieldNames"/>
+          </LHS>
+          <RHS line="92" col="18">
+            <EXPRESSION line="92" col="18">
+              <DOT line="92" col="31">
+                <IDENTIFIER line="92" col="18" name="TCBFieldNames"/>
+                <IDENTIFIER line="92" col="32" name="Create"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <FOR line="94" col="3">
+          <VARIABLES line="94" col="11">
+            <NAME line="94" col="11" value="field"/>
+          </VARIABLES>
+          <IN line="94" col="17">
+            <EXPRESSION line="94" col="20">
+              <DOT line="94" col="27">
+                <IDENTIFIER line="94" col="20" name="RecType"/>
+                <IDENTIFIER line="94" col="28" name="GetDeclaredFields"/>
+              </DOT>
+            </EXPRESSION>
+          </IN>
+          <IF line="95" col="5">
+            <EXPRESSION line="95" col="8">
+              <GREATER line="95" col="51">
+                <CALL line="95" col="8">
+                  <IDENTIFIER line="95" col="8" name="IndexStr"/>
+                  <EXPRESSIONS line="95" col="17">
+                    <EXPRESSION line="95" col="17">
+                      <DOT line="95" col="22">
+                        <IDENTIFIER line="95" col="17" name="field"/>
+                        <DOT line="95" col="32">
+                          <IDENTIFIER line="95" col="23" name="FieldType"/>
+                          <IDENTIFIER line="95" col="33" name="Name"/>
+                        </DOT>
+                      </DOT>
+                    </EXPRESSION>
+                    <EXPRESSION line="95" col="39">
+                      <IDENTIFIER line="95" col="39" name="Properties"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+                <UNARYMINUS line="95" col="53">
+                  <LITERAL line="95" col="54" value="1" type="numeric"/>
+                </UNARYMINUS>
+              </GREATER>
+            </EXPRESSION>
+            <THEN line="95" col="56">
+              <CALL line="96" col="7">
+                <CALL line="96" col="7">
+                  <DOT line="96" col="18">
+                    <IDENTIFIER line="96" col="7" name="FFieldNames"/>
+                    <IDENTIFIER line="96" col="19" name="Add"/>
+                  </DOT>
+                  <EXPRESSIONS line="96" col="23">
+                    <EXPRESSION line="96" col="23">
+                      <DOT line="96" col="28">
+                        <IDENTIFIER line="96" col="23" name="field"/>
+                        <IDENTIFIER line="96" col="29" name="Name"/>
+                      </DOT>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </CALL>
+            </THEN>
+          </IF>
+        </FOR>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="100" begin_col="1" end_line="106" end_col="1" class="true" name="TRepository&lt;T&gt;.Destroy" kind="destructor">
+      <STATEMENTS begin_line="101" begin_col="1" end_line="103" end_col="4">
+        <CALL line="102" col="3">
+          <CALL line="102" col="3">
+            <IDENTIFIER line="102" col="3" name="FreeAndNil"/>
+            <EXPRESSIONS line="102" col="14">
+              <EXPRESSION line="102" col="14">
+                <IDENTIFIER line="102" col="14" name="FFieldNames"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="106" begin_col="1" end_line="112" end_col="1" kind="function" name="TRepository&lt;T&gt;.Eof">
+      <RETURNTYPE line="106" col="30">
+        <TYPE line="106" col="30" name="boolean"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="107" begin_col="1" end_line="109" end_col="4">
+        <ASSIGN line="108" col="3">
+          <LHS line="108" col="3">
+            <IDENTIFIER line="108" col="3" name="Result"/>
+          </LHS>
+          <RHS line="108" col="13">
+            <EXPRESSION line="108" col="13">
+              <NOTEQUAL line="108" col="27">
+                <CALL line="108" col="13">
+                  <IDENTIFIER line="108" col="13" name="d4eof"/>
+                  <EXPRESSIONS line="108" col="19">
+                    <EXPRESSION line="108" col="19">
+                      <IDENTIFIER line="108" col="19" name="FTable"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+                <LITERAL line="108" col="30" value="0" type="numeric"/>
+              </NOTEQUAL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="112" begin_col="1" end_line="118" end_col="1" name="TRepository&lt;T&gt;.First" kind="procedure">
+      <STATEMENTS begin_line="113" begin_col="1" end_line="115" end_col="4">
+        <CALL line="114" col="3">
+          <CALL line="114" col="3">
+            <IDENTIFIER line="114" col="3" name="d4top"/>
+            <EXPRESSIONS line="114" col="9">
+              <EXPRESSION line="114" col="9">
+                <IDENTIFIER line="114" col="9" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="118" begin_col="1" end_line="132" end_col="1" kind="function" name="TRepository&lt;T&gt;.Exists">
+      <PARAMETERS line="118" col="31">
+        <PARAMETER line="118" col="32">
+          <NAME line="118" col="32" value="aId"/>
+          <TYPE line="118" col="37" name="integer"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="118" col="47">
+        <TYPE line="118" col="47" name="boolean"/>
+      </RETURNTYPE>
+      <VARIABLES line="119" col="1">
+        <VARIABLE line="120" col="3">
+          <NAME line="120" col="3" value="id"/>
+          <TYPE line="120" col="7" name="TCbId"/>
+        </VARIABLE>
+        <VARIABLE line="121" col="3">
+          <NAME line="121" col="3" value="index"/>
+          <TYPE line="121" col="10" name="Pointer"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="122" begin_col="1" end_line="129" end_col="4">
+        <ASSIGN line="123" col="3">
+          <LHS line="123" col="3">
+            <DOT line="123" col="5">
+              <IDENTIFIER line="123" col="3" name="id"/>
+              <IDENTIFIER line="123" col="6" name="Value"/>
+            </DOT>
+          </LHS>
+          <RHS line="123" col="15">
+            <EXPRESSION line="123" col="15">
+              <IDENTIFIER line="123" col="15" name="AId"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="125" col="3">
+          <LHS line="125" col="3">
+            <IDENTIFIER line="125" col="3" name="index"/>
+          </LHS>
+          <RHS line="125" col="12">
+            <EXPRESSION line="125" col="12">
+              <CALL line="125" col="12">
+                <IDENTIFIER line="125" col="12" name="d4tag"/>
+                <EXPRESSIONS line="125" col="18">
+                  <EXPRESSION line="125" col="18">
+                    <IDENTIFIER line="125" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="125" col="26">
+                    <CALL line="125" col="26">
+                      <IDENTIFIER line="125" col="26" name="PChar"/>
+                      <EXPRESSIONS line="125" col="32">
+                        <EXPRESSION line="125" col="32">
+                          <IDENTIFIER line="125" col="32" name="FIndexName"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="126" col="3">
+          <CALL line="126" col="3">
+            <IDENTIFIER line="126" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="126" col="15">
+              <EXPRESSION line="126" col="15">
+                <IDENTIFIER line="126" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="126" col="23">
+                <IDENTIFIER line="126" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="128" col="3">
+          <LHS line="128" col="3">
+            <IDENTIFIER line="128" col="3" name="Result"/>
+          </LHS>
+          <RHS line="128" col="13">
+            <EXPRESSION line="128" col="13">
+              <EQUAL line="128" col="45">
+                <CALL line="128" col="13">
+                  <IDENTIFIER line="128" col="13" name="d4seek"/>
+                  <EXPRESSIONS line="128" col="20">
+                    <EXPRESSION line="128" col="20">
+                      <IDENTIFIER line="128" col="20" name="FTable"/>
+                    </EXPRESSION>
+                    <EXPRESSION line="128" col="28">
+                      <CALL line="128" col="28">
+                        <IDENTIFIER line="128" col="28" name="PChar"/>
+                        <EXPRESSIONS line="128" col="34">
+                          <EXPRESSION line="128" col="34">
+                            <DOT line="128" col="36">
+                              <IDENTIFIER line="128" col="34" name="id"/>
+                              <IDENTIFIER line="128" col="37" name="AsStr"/>
+                            </DOT>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+                <IDENTIFIER line="128" col="47" name="r4success"/>
+              </EQUAL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="132" begin_col="1" end_line="156" end_col="1" kind="function" name="TRepository&lt;T&gt;.Exists">
+      <PARAMETERS line="132" col="31">
+        <PARAMETER line="132" col="32">
+          <NAME line="132" col="32" value="aPredicate"/>
+          <TYPE line="132" col="44" name="TFunc">
+            <TYPEARGS line="132" col="50">
+              <TYPE line="132" col="50" name="T"/>
+              <TYPE line="132" col="53" name="Boolean"/>
+            </TYPEARGS>
+          </TYPE>
+        </PARAMETER>
+        <PARAMETER line="132" col="63">
+          <NAME line="132" col="63" value="aIndex"/>
+          <TYPE line="132" col="71" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="132" col="80">
+        <TYPE line="132" col="80" name="boolean"/>
+      </RETURNTYPE>
+      <VARIABLES line="133" col="1">
+        <VARIABLE line="134" col="3">
+          <NAME line="134" col="3" value="index"/>
+          <TYPE line="134" col="10" name="Pointer"/>
+        </VARIABLE>
+        <VARIABLE line="135" col="3">
+          <NAME line="135" col="3" value="rc"/>
+          <TYPE line="135" col="7" name="integer"/>
+        </VARIABLE>
+        <VARIABLE line="136" col="3">
+          <NAME line="136" col="3" value="rec"/>
+          <TYPE line="136" col="8" name="T"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="137" begin_col="1" end_line="153" end_col="4">
+        <IF line="138" col="3">
+          <EXPRESSION line="138" col="6">
+            <EQUAL line="138" col="13">
+              <IDENTIFIER line="138" col="6" name="aIndex"/>
+              <LITERAL line="138" col="18" value="" type="string"/>
+            </EQUAL>
+          </EXPRESSION>
+          <THEN line="138" col="18">
+            <ASSIGN line="138" col="23">
+              <LHS line="138" col="23">
+                <IDENTIFIER line="138" col="23" name="aIndex"/>
+              </LHS>
+              <RHS line="138" col="33">
+                <EXPRESSION line="138" col="33">
+                  <IDENTIFIER line="138" col="33" name="FIndexName"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </THEN>
+        </IF>
+        <ASSIGN line="140" col="3">
+          <LHS line="140" col="3">
+            <IDENTIFIER line="140" col="3" name="Result"/>
+          </LHS>
+          <RHS line="140" col="13">
+            <EXPRESSION line="140" col="13">
+              <IDENTIFIER line="140" col="13" name="false"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="142" col="3">
+          <LHS line="142" col="3">
+            <IDENTIFIER line="142" col="3" name="index"/>
+          </LHS>
+          <RHS line="142" col="12">
+            <EXPRESSION line="142" col="12">
+              <CALL line="142" col="12">
+                <IDENTIFIER line="142" col="12" name="d4tag"/>
+                <EXPRESSIONS line="142" col="18">
+                  <EXPRESSION line="142" col="18">
+                    <IDENTIFIER line="142" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="142" col="26">
+                    <CALL line="142" col="26">
+                      <IDENTIFIER line="142" col="26" name="PChar"/>
+                      <EXPRESSIONS line="142" col="32">
+                        <EXPRESSION line="142" col="32">
+                          <IDENTIFIER line="142" col="32" name="aIndex"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="143" col="3">
+          <CALL line="143" col="3">
+            <IDENTIFIER line="143" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="143" col="15">
+              <EXPRESSION line="143" col="15">
+                <IDENTIFIER line="143" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="143" col="23">
+                <IDENTIFIER line="143" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="145" col="3">
+          <LHS line="145" col="3">
+            <IDENTIFIER line="145" col="3" name="rc"/>
+          </LHS>
+          <RHS line="145" col="9">
+            <EXPRESSION line="145" col="9">
+              <CALL line="145" col="9">
+                <IDENTIFIER line="145" col="9" name="d4top"/>
+                <EXPRESSIONS line="145" col="15">
+                  <EXPRESSION line="145" col="15">
+                    <IDENTIFIER line="145" col="15" name="FTable"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <WHILE line="147" col="3">
+          <EXPRESSION line="147" col="9">
+            <EQUAL line="147" col="12">
+              <IDENTIFIER line="147" col="9" name="rc"/>
+              <IDENTIFIER line="147" col="14" name="r4success"/>
+            </EQUAL>
+          </EXPRESSION>
+          <STATEMENTS begin_line="148" begin_col="3" end_line="152" end_col="6">
+            <ASSIGN line="149" col="5">
+              <LHS line="149" col="5">
+                <IDENTIFIER line="149" col="5" name="rec"/>
+              </LHS>
+              <RHS line="149" col="12">
+                <EXPRESSION line="149" col="12">
+                  <IDENTIFIER line="149" col="12" name="Read"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <IF line="150" col="5">
+              <EXPRESSION line="150" col="8">
+                <CALL line="150" col="8">
+                  <IDENTIFIER line="150" col="8" name="aPredicate"/>
+                  <EXPRESSIONS line="150" col="19">
+                    <EXPRESSION line="150" col="19">
+                      <IDENTIFIER line="150" col="19" name="rec"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+              <THEN line="150" col="24">
+                <CALL line="150" col="29">
+                  <CALL line="150" col="29">
+                    <IDENTIFIER line="150" col="29" name="exit"/>
+                    <EXPRESSIONS line="150" col="34">
+                      <EXPRESSION line="150" col="34">
+                        <IDENTIFIER line="150" col="34" name="true"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="151" col="5">
+              <LHS line="151" col="5">
+                <IDENTIFIER line="151" col="5" name="rc"/>
+              </LHS>
+              <RHS line="151" col="11">
+                <EXPRESSION line="151" col="11">
+                  <CALL line="151" col="11">
+                    <IDENTIFIER line="151" col="11" name="d4skip"/>
+                    <EXPRESSIONS line="151" col="18">
+                      <EXPRESSION line="151" col="18">
+                        <IDENTIFIER line="151" col="18" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="151" col="26">
+                        <LITERAL line="151" col="26" value="1" type="numeric"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </STATEMENTS>
+        </WHILE>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="156" begin_col="1" end_line="183" end_col="1" kind="function" name="TRepository&lt;T&gt;.First">
+      <PARAMETERS line="156" col="30">
+        <PARAMETER line="156" col="31">
+          <NAME line="156" col="31" value="aPredicate"/>
+          <TYPE line="156" col="43" name="TFunc">
+            <TYPEARGS line="156" col="49">
+              <TYPE line="156" col="49" name="T"/>
+              <TYPE line="156" col="52" name="boolean"/>
+            </TYPEARGS>
+          </TYPE>
+        </PARAMETER>
+        <PARAMETER line="156" col="62">
+          <NAME line="156" col="62" value="aIndex"/>
+          <TYPE line="156" col="70" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="156" col="79">
+        <TYPE line="156" col="79" name="T"/>
+      </RETURNTYPE>
+      <VARIABLES line="157" col="1">
+        <VARIABLE line="158" col="3">
+          <NAME line="158" col="3" value="index"/>
+          <TYPE line="158" col="10" name="Pointer"/>
+        </VARIABLE>
+        <VARIABLE line="159" col="3">
+          <NAME line="159" col="3" value="rc"/>
+          <TYPE line="159" col="7" name="integer"/>
+        </VARIABLE>
+        <VARIABLE line="160" col="3">
+          <NAME line="160" col="3" value="rec"/>
+          <TYPE line="160" col="8" name="T"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="161" begin_col="1" end_line="180" end_col="4">
+        <IF line="162" col="3">
+          <EXPRESSION line="162" col="6">
+            <EQUAL line="162" col="13">
+              <IDENTIFIER line="162" col="6" name="aIndex"/>
+              <LITERAL line="162" col="18" value="" type="string"/>
+            </EQUAL>
+          </EXPRESSION>
+          <THEN line="162" col="18">
+            <ASSIGN line="162" col="23">
+              <LHS line="162" col="23">
+                <IDENTIFIER line="162" col="23" name="aIndex"/>
+              </LHS>
+              <RHS line="162" col="33">
+                <EXPRESSION line="162" col="33">
+                  <IDENTIFIER line="162" col="33" name="FIndexName"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </THEN>
+        </IF>
+        <ASSIGN line="164" col="3">
+          <LHS line="164" col="3">
+            <IDENTIFIER line="164" col="3" name="index"/>
+          </LHS>
+          <RHS line="164" col="12">
+            <EXPRESSION line="164" col="12">
+              <CALL line="164" col="12">
+                <IDENTIFIER line="164" col="12" name="d4tag"/>
+                <EXPRESSIONS line="164" col="18">
+                  <EXPRESSION line="164" col="18">
+                    <IDENTIFIER line="164" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="164" col="26">
+                    <CALL line="164" col="26">
+                      <IDENTIFIER line="164" col="26" name="PChar"/>
+                      <EXPRESSIONS line="164" col="32">
+                        <EXPRESSION line="164" col="32">
+                          <IDENTIFIER line="164" col="32" name="aIndex"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="165" col="3">
+          <CALL line="165" col="3">
+            <IDENTIFIER line="165" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="165" col="15">
+              <EXPRESSION line="165" col="15">
+                <IDENTIFIER line="165" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="165" col="23">
+                <IDENTIFIER line="165" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="167" col="3">
+          <LHS line="167" col="3">
+            <IDENTIFIER line="167" col="3" name="rc"/>
+          </LHS>
+          <RHS line="167" col="9">
+            <EXPRESSION line="167" col="9">
+              <CALL line="167" col="9">
+                <IDENTIFIER line="167" col="9" name="d4top"/>
+                <EXPRESSIONS line="167" col="15">
+                  <EXPRESSION line="167" col="15">
+                    <IDENTIFIER line="167" col="15" name="FTable"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <WHILE line="169" col="3">
+          <EXPRESSION line="169" col="9">
+            <EQUAL line="169" col="12">
+              <IDENTIFIER line="169" col="9" name="rc"/>
+              <IDENTIFIER line="169" col="14" name="r4success"/>
+            </EQUAL>
+          </EXPRESSION>
+          <STATEMENTS begin_line="170" begin_col="3" end_line="177" end_col="6">
+            <ASSIGN line="171" col="5">
+              <LHS line="171" col="5">
+                <IDENTIFIER line="171" col="5" name="rec"/>
+              </LHS>
+              <RHS line="171" col="12">
+                <EXPRESSION line="171" col="12">
+                  <IDENTIFIER line="171" col="12" name="Read"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <IF line="173" col="5">
+              <EXPRESSION line="173" col="8">
+                <CALL line="173" col="8">
+                  <IDENTIFIER line="173" col="8" name="aPredicate"/>
+                  <EXPRESSIONS line="173" col="19">
+                    <EXPRESSION line="173" col="19">
+                      <IDENTIFIER line="173" col="19" name="rec"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+              <THEN line="173" col="24">
+                <CALL line="174" col="7">
+                  <CALL line="174" col="7">
+                    <IDENTIFIER line="174" col="7" name="exit"/>
+                    <EXPRESSIONS line="174" col="12">
+                      <EXPRESSION line="174" col="12">
+                        <IDENTIFIER line="174" col="12" name="rec"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="176" col="5">
+              <LHS line="176" col="5">
+                <IDENTIFIER line="176" col="5" name="rc"/>
+              </LHS>
+              <RHS line="176" col="11">
+                <EXPRESSION line="176" col="11">
+                  <CALL line="176" col="11">
+                    <IDENTIFIER line="176" col="11" name="d4skip"/>
+                    <EXPRESSIONS line="176" col="18">
+                      <EXPRESSION line="176" col="18">
+                        <IDENTIFIER line="176" col="18" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="176" col="26">
+                        <LITERAL line="176" col="26" value="1" type="numeric"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </STATEMENTS>
+        </WHILE>
+        <RAISE line="179" col="3">
+          <EXPRESSION line="179" col="9">
+            <CALL line="179" col="9">
+              <DOT line="179" col="18">
+                <IDENTIFIER line="179" col="9" name="Exception"/>
+                <IDENTIFIER line="179" col="19" name="Create"/>
+              </DOT>
+              <EXPRESSIONS line="179" col="26">
+                <EXPRESSION line="179" col="26">
+                  <LITERAL line="179" col="44" value="Record not found" type="string"/>
+                </EXPRESSION>
+              </EXPRESSIONS>
+            </CALL>
+          </EXPRESSION>
+        </RAISE>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="183" begin_col="1" end_line="210" end_col="1" kind="function" name="TRepository&lt;T&gt;.Where">
+      <PARAMETERS line="183" col="30">
+        <PARAMETER line="183" col="31">
+          <NAME line="183" col="31" value="aPredicate"/>
+          <TYPE line="183" col="43" name="TFunc">
+            <TYPEARGS line="183" col="49">
+              <TYPE line="183" col="49" name="T"/>
+              <TYPE line="183" col="52" name="boolean"/>
+            </TYPEARGS>
+          </TYPE>
+        </PARAMETER>
+        <PARAMETER line="183" col="62">
+          <NAME line="183" col="62" value="aIndex"/>
+          <TYPE line="183" col="70" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="183" col="79">
+        <TYPE line="183" col="79" name="TList">
+          <TYPEARGS line="183" col="85">
+            <TYPE line="183" col="85" name="T"/>
+          </TYPEARGS>
+        </TYPE>
+      </RETURNTYPE>
+      <VARIABLES line="184" col="1">
+        <VARIABLE line="185" col="3">
+          <NAME line="185" col="3" value="index"/>
+          <TYPE line="185" col="10" name="Pointer"/>
+        </VARIABLE>
+        <VARIABLE line="186" col="3">
+          <NAME line="186" col="3" value="rc"/>
+          <TYPE line="186" col="7" name="integer"/>
+        </VARIABLE>
+        <VARIABLE line="187" col="3">
+          <NAME line="187" col="3" value="rec"/>
+          <TYPE line="187" col="8" name="T"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="188" begin_col="1" end_line="207" end_col="4">
+        <IF line="189" col="3">
+          <EXPRESSION line="189" col="6">
+            <EQUAL line="189" col="13">
+              <IDENTIFIER line="189" col="6" name="aIndex"/>
+              <LITERAL line="189" col="18" value="" type="string"/>
+            </EQUAL>
+          </EXPRESSION>
+          <THEN line="189" col="18">
+            <ASSIGN line="189" col="23">
+              <LHS line="189" col="23">
+                <IDENTIFIER line="189" col="23" name="aIndex"/>
+              </LHS>
+              <RHS line="189" col="33">
+                <EXPRESSION line="189" col="33">
+                  <IDENTIFIER line="189" col="33" name="FIndexName"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </THEN>
+        </IF>
+        <ASSIGN line="191" col="3">
+          <LHS line="191" col="3">
+            <IDENTIFIER line="191" col="3" name="Result"/>
+          </LHS>
+          <RHS line="191" col="13">
+            <EXPRESSION line="191" col="13">
+              <DOT line="191" col="21">
+                <GENERIC line="191" col="13">
+                  <IDENTIFIER line="191" col="13" name="TList"/>
+                  <TYPEARGS line="191" col="19">
+                    <TYPE line="191" col="19" name="T"/>
+                  </TYPEARGS>
+                </GENERIC>
+                <IDENTIFIER line="191" col="22" name="Create"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="193" col="3">
+          <LHS line="193" col="3">
+            <IDENTIFIER line="193" col="3" name="index"/>
+          </LHS>
+          <RHS line="193" col="12">
+            <EXPRESSION line="193" col="12">
+              <CALL line="193" col="12">
+                <IDENTIFIER line="193" col="12" name="d4tag"/>
+                <EXPRESSIONS line="193" col="18">
+                  <EXPRESSION line="193" col="18">
+                    <IDENTIFIER line="193" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="193" col="26">
+                    <CALL line="193" col="26">
+                      <IDENTIFIER line="193" col="26" name="PChar"/>
+                      <EXPRESSIONS line="193" col="32">
+                        <EXPRESSION line="193" col="32">
+                          <IDENTIFIER line="193" col="32" name="aIndex"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="194" col="3">
+          <CALL line="194" col="3">
+            <IDENTIFIER line="194" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="194" col="15">
+              <EXPRESSION line="194" col="15">
+                <IDENTIFIER line="194" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="194" col="23">
+                <IDENTIFIER line="194" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="196" col="3">
+          <LHS line="196" col="3">
+            <IDENTIFIER line="196" col="3" name="rc"/>
+          </LHS>
+          <RHS line="196" col="9">
+            <EXPRESSION line="196" col="9">
+              <CALL line="196" col="9">
+                <IDENTIFIER line="196" col="9" name="d4top"/>
+                <EXPRESSIONS line="196" col="15">
+                  <EXPRESSION line="196" col="15">
+                    <IDENTIFIER line="196" col="15" name="FTable"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <WHILE line="198" col="3">
+          <EXPRESSION line="198" col="9">
+            <EQUAL line="198" col="12">
+              <IDENTIFIER line="198" col="9" name="rc"/>
+              <IDENTIFIER line="198" col="14" name="r4success"/>
+            </EQUAL>
+          </EXPRESSION>
+          <STATEMENTS begin_line="199" begin_col="3" end_line="206" end_col="6">
+            <ASSIGN line="200" col="5">
+              <LHS line="200" col="5">
+                <IDENTIFIER line="200" col="5" name="rec"/>
+              </LHS>
+              <RHS line="200" col="12">
+                <EXPRESSION line="200" col="12">
+                  <IDENTIFIER line="200" col="12" name="Read"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <IF line="202" col="5">
+              <EXPRESSION line="202" col="8">
+                <CALL line="202" col="8">
+                  <IDENTIFIER line="202" col="8" name="aPredicate"/>
+                  <EXPRESSIONS line="202" col="19">
+                    <EXPRESSION line="202" col="19">
+                      <IDENTIFIER line="202" col="19" name="rec"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+              <THEN line="202" col="24">
+                <CALL line="203" col="7">
+                  <CALL line="203" col="7">
+                    <DOT line="203" col="13">
+                      <IDENTIFIER line="203" col="7" name="Result"/>
+                      <IDENTIFIER line="203" col="14" name="Add"/>
+                    </DOT>
+                    <EXPRESSIONS line="203" col="18">
+                      <EXPRESSION line="203" col="18">
+                        <IDENTIFIER line="203" col="18" name="rec"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="205" col="5">
+              <LHS line="205" col="5">
+                <IDENTIFIER line="205" col="5" name="rc"/>
+              </LHS>
+              <RHS line="205" col="11">
+                <EXPRESSION line="205" col="11">
+                  <CALL line="205" col="11">
+                    <IDENTIFIER line="205" col="11" name="d4skip"/>
+                    <EXPRESSIONS line="205" col="18">
+                      <EXPRESSION line="205" col="18">
+                        <IDENTIFIER line="205" col="18" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="205" col="26">
+                        <LITERAL line="205" col="26" value="1" type="numeric"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </STATEMENTS>
+        </WHILE>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="210" begin_col="1" end_line="237" end_col="1" kind="function" name="TRepository&lt;T&gt;.Where">
+      <PARAMETERS line="210" col="30">
+        <PARAMETER line="210" col="31">
+          <NAME line="210" col="31" value="aValue"/>
+          <TYPE line="210" col="39" name="string"/>
+        </PARAMETER>
+        <PARAMETER line="210" col="47">
+          <NAME line="210" col="47" value="aIndex"/>
+          <TYPE line="210" col="54" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="210" col="63">
+        <TYPE line="210" col="63" name="TList">
+          <TYPEARGS line="210" col="69">
+            <TYPE line="210" col="69" name="T"/>
+          </TYPEARGS>
+        </TYPE>
+      </RETURNTYPE>
+      <VARIABLES line="211" col="1">
+        <VARIABLE line="212" col="3">
+          <NAME line="212" col="3" value="index"/>
+          <TYPE line="212" col="10" name="Pointer"/>
+        </VARIABLE>
+        <VARIABLE line="213" col="3">
+          <NAME line="213" col="3" value="rc"/>
+          <TYPE line="213" col="7" name="integer"/>
+        </VARIABLE>
+        <VARIABLE line="214" col="3">
+          <NAME line="214" col="3" value="rec"/>
+          <TYPE line="214" col="8" name="T"/>
+        </VARIABLE>
+        <VARIABLE line="215" col="3">
+          <NAME line="215" col="3" value="value"/>
+          <TYPE line="215" col="10" name="PChar"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="216" begin_col="1" end_line="234" end_col="4">
+        <IF line="217" col="3">
+          <EXPRESSION line="217" col="6">
+            <EQUAL line="217" col="13">
+              <IDENTIFIER line="217" col="6" name="aIndex"/>
+              <LITERAL line="217" col="18" value="" type="string"/>
+            </EQUAL>
+          </EXPRESSION>
+          <THEN line="217" col="18">
+            <ASSIGN line="217" col="23">
+              <LHS line="217" col="23">
+                <IDENTIFIER line="217" col="23" name="aIndex"/>
+              </LHS>
+              <RHS line="217" col="33">
+                <EXPRESSION line="217" col="33">
+                  <IDENTIFIER line="217" col="33" name="FIndexName"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </THEN>
+        </IF>
+        <ASSIGN line="219" col="3">
+          <LHS line="219" col="3">
+            <IDENTIFIER line="219" col="3" name="Result"/>
+          </LHS>
+          <RHS line="219" col="13">
+            <EXPRESSION line="219" col="13">
+              <DOT line="219" col="21">
+                <GENERIC line="219" col="13">
+                  <IDENTIFIER line="219" col="13" name="TList"/>
+                  <TYPEARGS line="219" col="19">
+                    <TYPE line="219" col="19" name="T"/>
+                  </TYPEARGS>
+                </GENERIC>
+                <IDENTIFIER line="219" col="22" name="Create"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="221" col="3">
+          <LHS line="221" col="3">
+            <IDENTIFIER line="221" col="3" name="index"/>
+          </LHS>
+          <RHS line="221" col="12">
+            <EXPRESSION line="221" col="12">
+              <CALL line="221" col="12">
+                <IDENTIFIER line="221" col="12" name="d4tag"/>
+                <EXPRESSIONS line="221" col="18">
+                  <EXPRESSION line="221" col="18">
+                    <IDENTIFIER line="221" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="221" col="26">
+                    <CALL line="221" col="26">
+                      <IDENTIFIER line="221" col="26" name="PChar"/>
+                      <EXPRESSIONS line="221" col="32">
+                        <EXPRESSION line="221" col="32">
+                          <IDENTIFIER line="221" col="32" name="aIndex"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="222" col="3">
+          <CALL line="222" col="3">
+            <IDENTIFIER line="222" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="222" col="15">
+              <EXPRESSION line="222" col="15">
+                <IDENTIFIER line="222" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="222" col="23">
+                <IDENTIFIER line="222" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="224" col="3">
+          <LHS line="224" col="3">
+            <IDENTIFIER line="224" col="3" name="value"/>
+          </LHS>
+          <RHS line="224" col="12">
+            <EXPRESSION line="224" col="12">
+              <CALL line="224" col="12">
+                <IDENTIFIER line="224" col="12" name="PChar"/>
+                <EXPRESSIONS line="224" col="18">
+                  <EXPRESSION line="224" col="18">
+                    <IDENTIFIER line="224" col="18" name="aValue"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="226" col="3">
+          <CALL line="226" col="3">
+            <IDENTIFIER line="226" col="3" name="d4top"/>
+            <EXPRESSIONS line="226" col="9">
+              <EXPRESSION line="226" col="9">
+                <IDENTIFIER line="226" col="9" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="227" col="3">
+          <LHS line="227" col="3">
+            <IDENTIFIER line="227" col="3" name="rc"/>
+          </LHS>
+          <RHS line="227" col="9">
+            <EXPRESSION line="227" col="9">
+              <CALL line="227" col="9">
+                <IDENTIFIER line="227" col="9" name="d4seek"/>
+                <EXPRESSIONS line="227" col="16">
+                  <EXPRESSION line="227" col="16">
+                    <IDENTIFIER line="227" col="16" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="227" col="24">
+                    <IDENTIFIER line="227" col="24" name="value"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <WHILE line="229" col="3">
+          <EXPRESSION line="229" col="9">
+            <EQUAL line="229" col="12">
+              <IDENTIFIER line="229" col="9" name="rc"/>
+              <IDENTIFIER line="229" col="14" name="r4success"/>
+            </EQUAL>
+          </EXPRESSION>
+          <STATEMENTS begin_line="229" begin_col="27" end_line="233" end_col="6">
+            <ASSIGN line="230" col="5">
+              <LHS line="230" col="5">
+                <IDENTIFIER line="230" col="5" name="rec"/>
+              </LHS>
+              <RHS line="230" col="12">
+                <EXPRESSION line="230" col="12">
+                  <IDENTIFIER line="230" col="12" name="Read"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <CALL line="231" col="5">
+              <CALL line="231" col="5">
+                <DOT line="231" col="11">
+                  <IDENTIFIER line="231" col="5" name="Result"/>
+                  <IDENTIFIER line="231" col="12" name="Add"/>
+                </DOT>
+                <EXPRESSIONS line="231" col="16">
+                  <EXPRESSION line="231" col="16">
+                    <IDENTIFIER line="231" col="16" name="rec"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </CALL>
+            <ASSIGN line="232" col="5">
+              <LHS line="232" col="5">
+                <IDENTIFIER line="232" col="5" name="rc"/>
+              </LHS>
+              <RHS line="232" col="11">
+                <EXPRESSION line="232" col="11">
+                  <CALL line="232" col="11">
+                    <IDENTIFIER line="232" col="11" name="d4seeknext"/>
+                    <EXPRESSIONS line="232" col="22">
+                      <EXPRESSION line="232" col="22">
+                        <IDENTIFIER line="232" col="22" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="232" col="30">
+                        <IDENTIFIER line="232" col="30" name="value"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </STATEMENTS>
+        </WHILE>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="237" begin_col="1" end_line="260" end_col="1" kind="function" name="TRepository&lt;T&gt;.GetAll">
+      <PARAMETERS line="237" col="31">
+        <PARAMETER line="237" col="32">
+          <NAME line="237" col="32" value="aIndex"/>
+          <TYPE line="237" col="39" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="237" col="48">
+        <TYPE line="237" col="48" name="TList">
+          <TYPEARGS line="237" col="54">
+            <TYPE line="237" col="54" name="T"/>
+          </TYPEARGS>
+        </TYPE>
+      </RETURNTYPE>
+      <VARIABLES line="238" col="1">
+        <VARIABLE line="239" col="3">
+          <NAME line="239" col="3" value="index"/>
+          <TYPE line="239" col="10" name="Pointer"/>
+        </VARIABLE>
+        <VARIABLE line="240" col="3">
+          <NAME line="240" col="3" value="rc"/>
+          <TYPE line="240" col="7" name="integer"/>
+        </VARIABLE>
+        <VARIABLE line="241" col="3">
+          <NAME line="241" col="3" value="rec"/>
+          <TYPE line="241" col="8" name="T"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="242" begin_col="1" end_line="257" end_col="4">
+        <IF line="243" col="3">
+          <EXPRESSION line="243" col="6">
+            <EQUAL line="243" col="13">
+              <IDENTIFIER line="243" col="6" name="aIndex"/>
+              <LITERAL line="243" col="18" value="" type="string"/>
+            </EQUAL>
+          </EXPRESSION>
+          <THEN line="243" col="18">
+            <ASSIGN line="243" col="23">
+              <LHS line="243" col="23">
+                <IDENTIFIER line="243" col="23" name="aIndex"/>
+              </LHS>
+              <RHS line="243" col="33">
+                <EXPRESSION line="243" col="33">
+                  <IDENTIFIER line="243" col="33" name="FIndexName"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </THEN>
+        </IF>
+        <ASSIGN line="245" col="3">
+          <LHS line="245" col="3">
+            <IDENTIFIER line="245" col="3" name="Result"/>
+          </LHS>
+          <RHS line="245" col="13">
+            <EXPRESSION line="245" col="13">
+              <DOT line="245" col="21">
+                <GENERIC line="245" col="13">
+                  <IDENTIFIER line="245" col="13" name="TList"/>
+                  <TYPEARGS line="245" col="19">
+                    <TYPE line="245" col="19" name="T"/>
+                  </TYPEARGS>
+                </GENERIC>
+                <IDENTIFIER line="245" col="22" name="Create"/>
+              </DOT>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="247" col="3">
+          <LHS line="247" col="3">
+            <IDENTIFIER line="247" col="3" name="index"/>
+          </LHS>
+          <RHS line="247" col="12">
+            <EXPRESSION line="247" col="12">
+              <CALL line="247" col="12">
+                <IDENTIFIER line="247" col="12" name="d4tag"/>
+                <EXPRESSIONS line="247" col="18">
+                  <EXPRESSION line="247" col="18">
+                    <IDENTIFIER line="247" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="247" col="26">
+                    <CALL line="247" col="26">
+                      <IDENTIFIER line="247" col="26" name="PChar"/>
+                      <EXPRESSIONS line="247" col="32">
+                        <EXPRESSION line="247" col="32">
+                          <IDENTIFIER line="247" col="32" name="aIndex"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="248" col="3">
+          <CALL line="248" col="3">
+            <IDENTIFIER line="248" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="248" col="15">
+              <EXPRESSION line="248" col="15">
+                <IDENTIFIER line="248" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="248" col="23">
+                <IDENTIFIER line="248" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="250" col="3">
+          <LHS line="250" col="3">
+            <IDENTIFIER line="250" col="3" name="rc"/>
+          </LHS>
+          <RHS line="250" col="9">
+            <EXPRESSION line="250" col="9">
+              <CALL line="250" col="9">
+                <IDENTIFIER line="250" col="9" name="d4top"/>
+                <EXPRESSIONS line="250" col="15">
+                  <EXPRESSION line="250" col="15">
+                    <IDENTIFIER line="250" col="15" name="FTable"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <WHILE line="252" col="3">
+          <EXPRESSION line="252" col="9">
+            <EQUAL line="252" col="12">
+              <IDENTIFIER line="252" col="9" name="rc"/>
+              <IDENTIFIER line="252" col="14" name="r4success"/>
+            </EQUAL>
+          </EXPRESSION>
+          <STATEMENTS begin_line="252" begin_col="27" end_line="256" end_col="6">
+            <ASSIGN line="253" col="5">
+              <LHS line="253" col="5">
+                <IDENTIFIER line="253" col="5" name="rec"/>
+              </LHS>
+              <RHS line="253" col="12">
+                <EXPRESSION line="253" col="12">
+                  <IDENTIFIER line="253" col="12" name="Read"/>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <CALL line="254" col="5">
+              <CALL line="254" col="5">
+                <DOT line="254" col="11">
+                  <IDENTIFIER line="254" col="5" name="Result"/>
+                  <IDENTIFIER line="254" col="12" name="Add"/>
+                </DOT>
+                <EXPRESSIONS line="254" col="16">
+                  <EXPRESSION line="254" col="16">
+                    <IDENTIFIER line="254" col="16" name="rec"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </CALL>
+            <ASSIGN line="255" col="5">
+              <LHS line="255" col="5">
+                <IDENTIFIER line="255" col="5" name="rc"/>
+              </LHS>
+              <RHS line="255" col="11">
+                <EXPRESSION line="255" col="11">
+                  <CALL line="255" col="11">
+                    <IDENTIFIER line="255" col="11" name="d4skip"/>
+                    <EXPRESSIONS line="255" col="18">
+                      <EXPRESSION line="255" col="18">
+                        <IDENTIFIER line="255" col="18" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="255" col="26">
+                        <LITERAL line="255" col="26" value="1" type="numeric"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+          </STATEMENTS>
+        </WHILE>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="260" begin_col="1" end_line="277" end_col="1" kind="function" name="TRepository&lt;T&gt;.GetById">
+      <PARAMETERS line="260" col="32">
+        <PARAMETER line="260" col="33">
+          <NAME line="260" col="33" value="aId"/>
+          <TYPE line="260" col="38" name="integer"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <RETURNTYPE line="260" col="48">
+        <TYPE line="260" col="48" name="T"/>
+      </RETURNTYPE>
+      <VARIABLES line="261" col="1">
+        <VARIABLE line="262" col="3">
+          <NAME line="262" col="3" value="id"/>
+          <TYPE line="262" col="7" name="TCbId"/>
+        </VARIABLE>
+        <VARIABLE line="263" col="3">
+          <NAME line="263" col="3" value="index"/>
+          <TYPE line="263" col="10" name="Pointer"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="264" begin_col="1" end_line="274" end_col="4">
+        <ASSIGN line="265" col="3">
+          <LHS line="265" col="3">
+            <DOT line="265" col="5">
+              <IDENTIFIER line="265" col="3" name="id"/>
+              <IDENTIFIER line="265" col="6" name="Value"/>
+            </DOT>
+          </LHS>
+          <RHS line="265" col="15">
+            <EXPRESSION line="265" col="15">
+              <IDENTIFIER line="265" col="15" name="AId"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="267" col="3">
+          <LHS line="267" col="3">
+            <IDENTIFIER line="267" col="3" name="index"/>
+          </LHS>
+          <RHS line="267" col="12">
+            <EXPRESSION line="267" col="12">
+              <CALL line="267" col="12">
+                <IDENTIFIER line="267" col="12" name="d4tag"/>
+                <EXPRESSIONS line="267" col="18">
+                  <EXPRESSION line="267" col="18">
+                    <IDENTIFIER line="267" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="267" col="26">
+                    <CALL line="267" col="26">
+                      <IDENTIFIER line="267" col="26" name="PChar"/>
+                      <EXPRESSIONS line="267" col="32">
+                        <EXPRESSION line="267" col="32">
+                          <IDENTIFIER line="267" col="32" name="FIndexName"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="268" col="3">
+          <CALL line="268" col="3">
+            <IDENTIFIER line="268" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="268" col="15">
+              <EXPRESSION line="268" col="15">
+                <IDENTIFIER line="268" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="268" col="23">
+                <IDENTIFIER line="268" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <IF line="270" col="3">
+          <EXPRESSION line="270" col="6">
+            <NOTEQUAL line="270" col="38">
+              <CALL line="270" col="6">
+                <IDENTIFIER line="270" col="6" name="d4seek"/>
+                <EXPRESSIONS line="270" col="13">
+                  <EXPRESSION line="270" col="13">
+                    <IDENTIFIER line="270" col="13" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="270" col="21">
+                    <CALL line="270" col="21">
+                      <IDENTIFIER line="270" col="21" name="PChar"/>
+                      <EXPRESSIONS line="270" col="27">
+                        <EXPRESSION line="270" col="27">
+                          <DOT line="270" col="29">
+                            <IDENTIFIER line="270" col="27" name="id"/>
+                            <IDENTIFIER line="270" col="30" name="AsStr"/>
+                          </DOT>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+              <IDENTIFIER line="270" col="41" name="r4success"/>
+            </NOTEQUAL>
+          </EXPRESSION>
+          <THEN line="270" col="51">
+            <RAISE line="271" col="5">
+              <EXPRESSION line="271" col="11">
+                <CALL line="271" col="11">
+                  <DOT line="271" col="20">
+                    <IDENTIFIER line="271" col="11" name="Exception"/>
+                    <IDENTIFIER line="271" col="21" name="Create"/>
+                  </DOT>
+                  <EXPRESSIONS line="271" col="28">
+                    <EXPRESSION line="271" col="28">
+                      <ADD line="271" col="50">
+                        <LITERAL line="271" col="50" value="Unable to find id: " type="string"/>
+                        <CALL line="271" col="28">
+                          <IDENTIFIER line="271" col="52" name="IntToStr"/>
+                          <EXPRESSIONS line="271" col="61">
+                            <EXPRESSION line="271" col="61">
+                              <IDENTIFIER line="271" col="61" name="aId"/>
+                            </EXPRESSION>
+                          </EXPRESSIONS>
+                        </CALL>
+                      </ADD>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+            </RAISE>
+          </THEN>
+        </IF>
+        <ASSIGN line="273" col="3">
+          <LHS line="273" col="3">
+            <IDENTIFIER line="273" col="3" name="Result"/>
+          </LHS>
+          <RHS line="273" col="13">
+            <EXPRESSION line="273" col="13">
+              <IDENTIFIER line="273" col="13" name="Read"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="277" begin_col="1" end_line="284" end_col="1" kind="function" name="TRepository&lt;T&gt;.GetFirst">
+      <RETURNTYPE line="277" col="35">
+        <TYPE line="277" col="35" name="T"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="278" begin_col="1" end_line="281" end_col="4">
+        <CALL line="279" col="3">
+          <IDENTIFIER line="279" col="3" name="First"/>
+        </CALL>
+        <ASSIGN line="280" col="3">
+          <LHS line="280" col="3">
+            <IDENTIFIER line="280" col="3" name="Result"/>
+          </LHS>
+          <RHS line="280" col="13">
+            <EXPRESSION line="280" col="13">
+              <IDENTIFIER line="280" col="13" name="Read"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="284" begin_col="1" end_line="291" end_col="1" kind="function" name="TRepository&lt;T&gt;.GetLast">
+      <RETURNTYPE line="284" col="34">
+        <TYPE line="284" col="34" name="T"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="285" begin_col="1" end_line="288" end_col="4">
+        <CALL line="286" col="3">
+          <IDENTIFIER line="286" col="3" name="Last"/>
+        </CALL>
+        <ASSIGN line="287" col="3">
+          <LHS line="287" col="3">
+            <IDENTIFIER line="287" col="3" name="Result"/>
+          </LHS>
+          <RHS line="287" col="13">
+            <EXPRESSION line="287" col="13">
+              <IDENTIFIER line="287" col="13" name="Read"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="291" begin_col="1" end_line="298" end_col="1" kind="function" name="TRepository&lt;T&gt;.GetNext">
+      <RETURNTYPE line="291" col="34">
+        <TYPE line="291" col="34" name="T"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="292" begin_col="1" end_line="295" end_col="4">
+        <CALL line="293" col="3">
+          <IDENTIFIER line="293" col="3" name="Next"/>
+        </CALL>
+        <ASSIGN line="294" col="3">
+          <LHS line="294" col="3">
+            <IDENTIFIER line="294" col="3" name="Result"/>
+          </LHS>
+          <RHS line="294" col="13">
+            <EXPRESSION line="294" col="13">
+              <IDENTIFIER line="294" col="13" name="Read"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="298" begin_col="1" end_line="304" end_col="1" kind="function" name="TRepository&lt;T&gt;.HasData">
+      <RETURNTYPE line="298" col="34">
+        <TYPE line="298" col="34" name="boolean"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="299" begin_col="1" end_line="301" end_col="4">
+        <ASSIGN line="300" col="3">
+          <LHS line="300" col="3">
+            <IDENTIFIER line="300" col="3" name="Result"/>
+          </LHS>
+          <RHS line="300" col="13">
+            <EXPRESSION line="300" col="13">
+              <EQUAL line="300" col="27">
+                <CALL line="300" col="13">
+                  <IDENTIFIER line="300" col="13" name="d4eof"/>
+                  <EXPRESSIONS line="300" col="19">
+                    <EXPRESSION line="300" col="19">
+                      <IDENTIFIER line="300" col="19" name="FTable"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+                <LITERAL line="300" col="29" value="0" type="numeric"/>
+              </EQUAL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="304" begin_col="1" end_line="310" end_col="1" name="TRepository&lt;T&gt;.Last" kind="procedure">
+      <STATEMENTS begin_line="305" begin_col="1" end_line="307" end_col="4">
+        <CALL line="306" col="3">
+          <CALL line="306" col="3">
+            <IDENTIFIER line="306" col="3" name="d4bottom"/>
+            <EXPRESSIONS line="306" col="12">
+              <EXPRESSION line="306" col="12">
+                <IDENTIFIER line="306" col="12" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="310" begin_col="1" end_line="316" end_col="1" name="TRepository&lt;T&gt;.Next" kind="procedure">
+      <STATEMENTS begin_line="311" begin_col="1" end_line="313" end_col="4">
+        <CALL line="312" col="3">
+          <CALL line="312" col="3">
+            <IDENTIFIER line="312" col="3" name="d4skip"/>
+            <EXPRESSIONS line="312" col="10">
+              <EXPRESSION line="312" col="10">
+                <IDENTIFIER line="312" col="10" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="312" col="18">
+                <LITERAL line="312" col="18" value="1" type="numeric"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="316" begin_col="1" end_line="332" end_col="1" name="TRepository&lt;T&gt;.Create" kind="constructor">
+      <VARIABLES line="317" col="1">
+        <VARIABLE line="318" col="3">
+          <NAME line="318" col="3" value="name"/>
+          <TYPE line="318" col="9" name="string"/>
+        </VARIABLE>
+        <VARIABLE line="319" col="3">
+          <NAME line="319" col="3" value="field"/>
+          <TYPE line="319" col="10" name="FIELD4"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="320" begin_col="1" end_line="329" end_col="4">
+        <ASSIGN line="321" col="3">
+          <LHS line="321" col="3">
+            <IDENTIFIER line="321" col="3" name="FTable"/>
+          </LHS>
+          <RHS line="321" col="13">
+            <EXPRESSION line="321" col="13">
+              <CALL line="321" col="13">
+                <DOT line="321" col="21">
+                  <IDENTIFIER line="321" col="13" name="Database"/>
+                  <IDENTIFIER line="321" col="22" name="Open"/>
+                </DOT>
+                <EXPRESSIONS line="321" col="27">
+                  <EXPRESSION line="321" col="27">
+                    <IDENTIFIER line="321" col="27" name="FFilename"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="323" col="3">
+          <LHS line="323" col="3">
+            <IDENTIFIER line="323" col="3" name="FFields"/>
+          </LHS>
+          <RHS line="323" col="14">
+            <EXPRESSION line="323" col="14">
+              <CALL line="323" col="14">
+                <DOT line="323" col="23">
+                  <IDENTIFIER line="323" col="14" name="TCBFields"/>
+                  <IDENTIFIER line="323" col="24" name="Create"/>
+                </DOT>
+                <EXPRESSIONS line="323" col="31">
+                  <EXPRESSION line="323" col="31">
+                    <DOT line="323" col="47">
+                      <IDENTIFIER line="323" col="31" name="TIStringComparer"/>
+                      <IDENTIFIER line="323" col="48" name="Ordinal"/>
+                    </DOT>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <FOR line="325" col="3">
+          <IDENTIFIER line="325" col="7" name="name"/>
+          <IN line="325" col="12">
+            <EXPRESSION line="325" col="15">
+              <IDENTIFIER line="325" col="15" name="FFieldNames"/>
+            </EXPRESSION>
+          </IN>
+          <STATEMENTS begin_line="325" begin_col="30" end_line="328" end_col="6">
+            <ASSIGN line="326" col="5">
+              <LHS line="326" col="5">
+                <IDENTIFIER line="326" col="5" name="field"/>
+              </LHS>
+              <RHS line="326" col="14">
+                <EXPRESSION line="326" col="14">
+                  <CALL line="326" col="14">
+                    <IDENTIFIER line="326" col="14" name="d4field"/>
+                    <EXPRESSIONS line="326" col="22">
+                      <EXPRESSION line="326" col="22">
+                        <IDENTIFIER line="326" col="22" name="FTable"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="326" col="30">
+                        <CALL line="326" col="30">
+                          <IDENTIFIER line="326" col="30" name="PChar"/>
+                          <EXPRESSIONS line="326" col="36">
+                            <EXPRESSION line="326" col="36">
+                              <IDENTIFIER line="326" col="36" name="name"/>
+                            </EXPRESSION>
+                          </EXPRESSIONS>
+                        </CALL>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <CALL line="327" col="5">
+              <CALL line="327" col="5">
+                <DOT line="327" col="12">
+                  <IDENTIFIER line="327" col="5" name="FFields"/>
+                  <IDENTIFIER line="327" col="13" name="Add"/>
+                </DOT>
+                <EXPRESSIONS line="327" col="17">
+                  <EXPRESSION line="327" col="17">
+                    <IDENTIFIER line="327" col="17" name="name"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="327" col="23">
+                    <IDENTIFIER line="327" col="23" name="field"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </CALL>
+          </STATEMENTS>
+        </FOR>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="332" begin_col="1" end_line="342" end_col="1" name="TRepository&lt;T&gt;.Destroy" kind="destructor">
+      <STATEMENTS begin_line="333" begin_col="1" end_line="339" end_col="4">
+        <CALL line="334" col="3">
+          <CALL line="334" col="3">
+            <DOT line="334" col="11">
+              <IDENTIFIER line="334" col="3" name="Database"/>
+              <IDENTIFIER line="334" col="12" name="Close"/>
+            </DOT>
+            <EXPRESSIONS line="334" col="18">
+              <EXPRESSION line="334" col="18">
+                <IDENTIFIER line="334" col="18" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <CALL line="336" col="3">
+          <CALL line="336" col="3">
+            <IDENTIFIER line="336" col="3" name="FreeAndNil"/>
+            <EXPRESSIONS line="336" col="14">
+              <EXPRESSION line="336" col="14">
+                <IDENTIFIER line="336" col="14" name="FFields"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <INHERITED line="338" col="3"/>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="342" begin_col="1" end_line="389" end_col="1" kind="function" name="TRepository&lt;T&gt;.Read">
+      <RETURNTYPE line="342" col="31">
+        <TYPE line="342" col="31" name="T"/>
+      </RETURNTYPE>
+      <VARIABLES line="343" col="1">
+        <VARIABLE line="344" col="3">
+          <NAME line="344" col="3" value="Context"/>
+          <TYPE line="344" col="12" name="TRttiContext"/>
+        </VARIABLE>
+        <VARIABLE line="345" col="3">
+          <NAME line="345" col="3" value="RType"/>
+          <TYPE line="345" col="10" name="TRttiType"/>
+        </VARIABLE>
+        <VARIABLE line="346" col="3">
+          <NAME line="346" col="3" value="Method"/>
+          <TYPE line="346" col="11" name="TRttiMethod"/>
+        </VARIABLE>
+        <VARIABLE line="347" col="3">
+          <NAME line="347" col="3" value="Values"/>
+          <TYPE line="347" col="11" name="TArray">
+            <TYPEARGS line="347" col="18">
+              <TYPE line="347" col="18" name="TValue"/>
+            </TYPEARGS>
+          </TYPE>
+        </VARIABLE>
+        <VARIABLE line="348" col="3">
+          <NAME line="348" col="3" value="Value"/>
+          <TYPE line="348" col="10" name="string"/>
+        </VARIABLE>
+        <VARIABLE line="349" col="3">
+          <NAME line="349" col="3" value="Ptr"/>
+          <TYPE line="349" col="8" name="TValue"/>
+        </VARIABLE>
+        <VARIABLE line="350" col="3">
+          <NAME line="350" col="3" value="I"/>
+          <TYPE line="350" col="6" name="Integer"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="351" begin_col="1" end_line="386" end_col="4">
+        <ASSIGN line="352" col="3">
+          <LHS line="352" col="3">
+            <IDENTIFIER line="352" col="3" name="RType"/>
+          </LHS>
+          <RHS line="352" col="12">
+            <EXPRESSION line="352" col="12">
+              <CALL line="352" col="12">
+                <DOT line="352" col="19">
+                  <IDENTIFIER line="352" col="12" name="Context"/>
+                  <IDENTIFIER line="352" col="20" name="GetType"/>
+                </DOT>
+                <EXPRESSIONS line="352" col="28">
+                  <EXPRESSION line="352" col="28">
+                    <CALL line="352" col="28">
+                      <IDENTIFIER line="352" col="28" name="TypeInfo"/>
+                      <EXPRESSIONS line="352" col="37">
+                        <EXPRESSION line="352" col="37">
+                          <IDENTIFIER line="352" col="37" name="T"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <VARIABLES line="354" col="3">
+          <VARIABLE line="354" col="7">
+            <NAME line="354" col="7" value="fields"/>
+          </VARIABLE>
+          <ASSIGN line="0" col="0">
+            <EXPRESSION line="354" col="17">
+              <DOT line="354" col="22">
+                <IDENTIFIER line="354" col="17" name="RType"/>
+                <IDENTIFIER line="354" col="23" name="GetDeclaredFields"/>
+              </DOT>
+            </EXPRESSION>
+          </ASSIGN>
+        </VARIABLES>
+        <CALL line="355" col="3">
+          <CALL line="355" col="3">
+            <IDENTIFIER line="355" col="3" name="SetLength"/>
+            <EXPRESSIONS line="355" col="13">
+              <EXPRESSION line="355" col="13">
+                <IDENTIFIER line="355" col="13" name="Values"/>
+              </EXPRESSION>
+              <EXPRESSION line="355" col="21">
+                <CALL line="355" col="21">
+                  <IDENTIFIER line="355" col="21" name="Length"/>
+                  <EXPRESSIONS line="355" col="28">
+                    <EXPRESSION line="355" col="28">
+                      <IDENTIFIER line="355" col="28" name="fields"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <ASSIGN line="357" col="3">
+          <LHS line="357" col="3">
+            <IDENTIFIER line="357" col="3" name="I"/>
+          </LHS>
+          <RHS line="357" col="8">
+            <EXPRESSION line="357" col="8">
+              <LITERAL line="357" col="8" value="0" type="numeric"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <FOR line="359" col="3">
+          <VARIABLES line="359" col="11">
+            <NAME line="359" col="11" value="field"/>
+          </VARIABLES>
+          <IN line="359" col="17">
+            <EXPRESSION line="359" col="20">
+              <IDENTIFIER line="359" col="20" name="fields"/>
+            </EXPRESSION>
+          </IN>
+          <STATEMENTS begin_line="359" begin_col="30" end_line="380" end_col="6">
+            <VARIABLES line="360" col="5">
+              <VARIABLE line="360" col="9">
+                <NAME line="360" col="9" value="name"/>
+              </VARIABLE>
+              <ASSIGN line="0" col="0">
+                <EXPRESSION line="360" col="17">
+                  <DOT line="360" col="22">
+                    <IDENTIFIER line="360" col="17" name="field"/>
+                    <IDENTIFIER line="360" col="23" name="Name"/>
+                  </DOT>
+                </EXPRESSION>
+              </ASSIGN>
+            </VARIABLES>
+            <VARIABLES line="361" col="5">
+              <VARIABLE line="361" col="9">
+                <NAME line="361" col="9" value="typename"/>
+              </VARIABLE>
+              <ASSIGN line="0" col="0">
+                <EXPRESSION line="361" col="21">
+                  <DOT line="361" col="26">
+                    <IDENTIFIER line="361" col="21" name="field"/>
+                    <DOT line="361" col="36">
+                      <IDENTIFIER line="361" col="27" name="FieldType"/>
+                      <IDENTIFIER line="361" col="37" name="Name"/>
+                    </DOT>
+                  </DOT>
+                </EXPRESSION>
+              </ASSIGN>
+            </VARIABLES>
+            <IF line="363" col="5">
+              <EXPRESSION line="363" col="8">
+                <LOWER line="363" col="39">
+                  <CALL line="363" col="8">
+                    <IDENTIFIER line="363" col="8" name="IndexStr"/>
+                    <EXPRESSIONS line="363" col="17">
+                      <EXPRESSION line="363" col="17">
+                        <IDENTIFIER line="363" col="17" name="typename"/>
+                      </EXPRESSION>
+                      <EXPRESSION line="363" col="27">
+                        <IDENTIFIER line="363" col="27" name="Properties"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                  <LITERAL line="363" col="41" value="0" type="numeric"/>
+                </LOWER>
+              </EXPRESSION>
+              <THEN line="363" col="43">
+                <CALL line="363" col="48">
+                  <IDENTIFIER line="363" col="48" name="continue"/>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="365" col="5">
+              <LHS line="365" col="5">
+                <IDENTIFIER line="365" col="5" name="Value"/>
+              </LHS>
+              <RHS line="365" col="14">
+                <EXPRESSION line="365" col="14">
+                  <DOT line="365" col="103">
+                    <CALL line="365" col="14">
+                      <IDENTIFIER line="365" col="14" name="Iff"/>
+                      <EXPRESSIONS line="365" col="18">
+                        <EXPRESSION line="365" col="18">
+                          <EQUAL line="365" col="27">
+                            <IDENTIFIER line="365" col="18" name="typename"/>
+                            <LITERAL line="365" col="38" value="TCbMemo" type="string"/>
+                          </EQUAL>
+                        </EXPRESSION>
+                        <EXPRESSION line="365" col="40">
+                          <CALL line="365" col="40">
+                            <TYPE line="365" col="40" name="string"/>
+                            <EXPRESSIONS line="365" col="47">
+                              <EXPRESSION line="365" col="47">
+                                <CALL line="365" col="47">
+                                  <IDENTIFIER line="365" col="47" name="f4memoStr"/>
+                                  <EXPRESSIONS line="365" col="57">
+                                    <EXPRESSION line="365" col="57">
+                                      <INDEXED line="365" col="64">
+                                        <EXPRESSION line="365" col="65">
+                                          <IDENTIFIER line="365" col="65" name="name"/>
+                                        </EXPRESSION>
+                                        <IDENTIFIER line="365" col="57" name="FFields"/>
+                                      </INDEXED>
+                                    </EXPRESSION>
+                                  </EXPRESSIONS>
+                                </CALL>
+                              </EXPRESSION>
+                            </EXPRESSIONS>
+                          </CALL>
+                        </EXPRESSION>
+                        <EXPRESSION line="365" col="74">
+                          <CALL line="365" col="74">
+                            <TYPE line="365" col="74" name="string"/>
+                            <EXPRESSIONS line="365" col="81">
+                              <EXPRESSION line="365" col="81">
+                                <CALL line="365" col="81">
+                                  <IDENTIFIER line="365" col="81" name="f4str"/>
+                                  <EXPRESSIONS line="365" col="87">
+                                    <EXPRESSION line="365" col="87">
+                                      <INDEXED line="365" col="94">
+                                        <EXPRESSION line="365" col="95">
+                                          <IDENTIFIER line="365" col="95" name="name"/>
+                                        </EXPRESSION>
+                                        <IDENTIFIER line="365" col="87" name="FFields"/>
+                                      </INDEXED>
+                                    </EXPRESSION>
+                                  </EXPRESSIONS>
+                                </CALL>
+                              </EXPRESSION>
+                            </EXPRESSIONS>
+                          </CALL>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                    <IDENTIFIER line="365" col="104" name="Trim"/>
+                  </DOT>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <CASE line="367" col="5">
+              <EXPRESSION line="367" col="10">
+                <CALL line="367" col="10">
+                  <IDENTIFIER line="367" col="10" name="TProperties"/>
+                  <EXPRESSIONS line="367" col="22">
+                    <EXPRESSION line="367" col="22">
+                      <CALL line="367" col="22">
+                        <IDENTIFIER line="367" col="22" name="IndexStr"/>
+                        <EXPRESSIONS line="367" col="31">
+                          <EXPRESSION line="367" col="31">
+                            <IDENTIFIER line="367" col="31" name="typename"/>
+                          </EXPRESSION>
+                          <EXPRESSION line="367" col="41">
+                            <IDENTIFIER line="367" col="41" name="Properties"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+              <CASESELECTOR line="368" col="7">
+                <CASELABELS line="368" col="7">
+                  <CASELABEL line="368" col="7">
+                    <EXPRESSION line="368" col="7">
+                      <IDENTIFIER line="368" col="7" name="tpId"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="368" col="19">
+                  <LHS line="368" col="19">
+                    <INDEXED line="368" col="25">
+                      <EXPRESSION line="368" col="26">
+                        <IDENTIFIER line="368" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="368" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="368" col="32">
+                    <EXPRESSION line="368" col="32">
+                      <CALL line="368" col="32">
+                        <IDENTIFIER line="368" col="32" name="StrToIntDef"/>
+                        <EXPRESSIONS line="368" col="44">
+                          <EXPRESSION line="368" col="44">
+                            <IDENTIFIER line="368" col="44" name="Value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="369" col="7">
+                <CASELABELS line="369" col="7">
+                  <CASELABEL line="369" col="7">
+                    <EXPRESSION line="369" col="7">
+                      <IDENTIFIER line="369" col="7" name="tpInteger"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="369" col="19">
+                  <LHS line="369" col="19">
+                    <INDEXED line="369" col="25">
+                      <EXPRESSION line="369" col="26">
+                        <IDENTIFIER line="369" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="369" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="369" col="32">
+                    <EXPRESSION line="369" col="32">
+                      <CALL line="369" col="32">
+                        <IDENTIFIER line="369" col="32" name="StrToIntDef"/>
+                        <EXPRESSIONS line="369" col="44">
+                          <EXPRESSION line="369" col="44">
+                            <IDENTIFIER line="369" col="44" name="Value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="370" col="7">
+                <CASELABELS line="370" col="7">
+                  <CASELABEL line="370" col="7">
+                    <EXPRESSION line="370" col="7">
+                      <IDENTIFIER line="370" col="7" name="tpSingle"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="370" col="19">
+                  <LHS line="370" col="19">
+                    <INDEXED line="370" col="25">
+                      <EXPRESSION line="370" col="26">
+                        <IDENTIFIER line="370" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="370" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="370" col="32">
+                    <EXPRESSION line="370" col="32">
+                      <CALL line="370" col="32">
+                        <IDENTIFIER line="370" col="32" name="StrToFloatDef"/>
+                        <EXPRESSIONS line="370" col="46">
+                          <EXPRESSION line="370" col="46">
+                            <IDENTIFIER line="370" col="46" name="Value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="371" col="7">
+                <CASELABELS line="371" col="7">
+                  <CASELABEL line="371" col="7">
+                    <EXPRESSION line="371" col="7">
+                      <IDENTIFIER line="371" col="7" name="tpString"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="371" col="19">
+                  <LHS line="371" col="19">
+                    <INDEXED line="371" col="25">
+                      <EXPRESSION line="371" col="26">
+                        <IDENTIFIER line="371" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="371" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="371" col="32">
+                    <EXPRESSION line="371" col="32">
+                      <IDENTIFIER line="371" col="32" name="Value"/>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="372" col="7">
+                <CASELABELS line="372" col="7">
+                  <CASELABEL line="372" col="7">
+                    <EXPRESSION line="372" col="7">
+                      <IDENTIFIER line="372" col="7" name="tpBoolean"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="372" col="19">
+                  <LHS line="372" col="19">
+                    <INDEXED line="372" col="25">
+                      <EXPRESSION line="372" col="26">
+                        <IDENTIFIER line="372" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="372" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="372" col="32">
+                    <EXPRESSION line="372" col="32">
+                      <EQUAL line="372" col="38">
+                        <IDENTIFIER line="372" col="32" name="Value"/>
+                        <LITERAL line="372" col="43" value="T" type="string"/>
+                      </EQUAL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="373" col="7">
+                <CASELABELS line="373" col="7">
+                  <CASELABEL line="373" col="7">
+                    <EXPRESSION line="373" col="7">
+                      <IDENTIFIER line="373" col="7" name="tpDate"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="373" col="19">
+                  <LHS line="373" col="19">
+                    <INDEXED line="373" col="25">
+                      <EXPRESSION line="373" col="26">
+                        <IDENTIFIER line="373" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="373" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="373" col="32">
+                    <EXPRESSION line="373" col="32">
+                      <CALL line="373" col="32">
+                        <IDENTIFIER line="373" col="32" name="StrToDateDef"/>
+                        <EXPRESSIONS line="373" col="45">
+                          <EXPRESSION line="373" col="45">
+                            <IDENTIFIER line="373" col="45" name="value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="374" col="7">
+                <CASELABELS line="374" col="7">
+                  <CASELABEL line="374" col="7">
+                    <EXPRESSION line="374" col="7">
+                      <IDENTIFIER line="374" col="7" name="tpDateTime"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="374" col="19">
+                  <LHS line="374" col="19">
+                    <INDEXED line="374" col="25">
+                      <EXPRESSION line="374" col="26">
+                        <IDENTIFIER line="374" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="374" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="374" col="32">
+                    <EXPRESSION line="374" col="32">
+                      <CALL line="374" col="32">
+                        <IDENTIFIER line="374" col="32" name="StrToDateTimeDef"/>
+                        <EXPRESSIONS line="374" col="49">
+                          <EXPRESSION line="374" col="49">
+                            <IDENTIFIER line="374" col="49" name="value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="375" col="7">
+                <CASELABELS line="375" col="7">
+                  <CASELABEL line="375" col="7">
+                    <EXPRESSION line="375" col="7">
+                      <IDENTIFIER line="375" col="7" name="tpMemo"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="375" col="19">
+                  <LHS line="375" col="19">
+                    <INDEXED line="375" col="25">
+                      <EXPRESSION line="375" col="26">
+                        <IDENTIFIER line="375" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="375" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="375" col="32">
+                    <EXPRESSION line="375" col="32">
+                      <IDENTIFIER line="375" col="32" name="Value"/>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+              <CASESELECTOR line="376" col="7">
+                <CASELABELS line="376" col="7">
+                  <CASELABEL line="376" col="7">
+                    <EXPRESSION line="376" col="7">
+                      <IDENTIFIER line="376" col="7" name="tpDouble"/>
+                    </EXPRESSION>
+                  </CASELABEL>
+                </CASELABELS>
+                <ASSIGN line="376" col="19">
+                  <LHS line="376" col="19">
+                    <INDEXED line="376" col="25">
+                      <EXPRESSION line="376" col="26">
+                        <IDENTIFIER line="376" col="26" name="I"/>
+                      </EXPRESSION>
+                      <IDENTIFIER line="376" col="19" name="Values"/>
+                    </INDEXED>
+                  </LHS>
+                  <RHS line="376" col="32">
+                    <EXPRESSION line="376" col="32">
+                      <CALL line="376" col="32">
+                        <IDENTIFIER line="376" col="32" name="StrToDoubleDef"/>
+                        <EXPRESSIONS line="376" col="47">
+                          <EXPRESSION line="376" col="47">
+                            <IDENTIFIER line="376" col="47" name="Value"/>
+                          </EXPRESSION>
+                        </EXPRESSIONS>
+                      </CALL>
+                    </EXPRESSION>
+                  </RHS>
+                </ASSIGN>
+              </CASESELECTOR>
+            </CASE>
+            <CALL line="379" col="5">
+              <CALL line="379" col="5">
+                <IDENTIFIER line="379" col="5" name="Inc"/>
+                <EXPRESSIONS line="379" col="9">
+                  <EXPRESSION line="379" col="9">
+                    <IDENTIFIER line="379" col="9" name="I"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </CALL>
+          </STATEMENTS>
+        </FOR>
+        <ASSIGN line="382" col="3">
+          <LHS line="382" col="3">
+            <IDENTIFIER line="382" col="3" name="Ptr"/>
+          </LHS>
+          <RHS line="382" col="10">
+            <EXPRESSION line="382" col="10">
+              <CALL line="382" col="10">
+                <DOT line="382" col="16">
+                  <IDENTIFIER line="382" col="10" name="TValue"/>
+                  <GENERIC line="382" col="10">
+                    <IDENTIFIER line="382" col="17" name="From"/>
+                    <TYPEARGS line="382" col="22">
+                      <TYPE line="382" col="22" name="Pointer"/>
+                    </TYPEARGS>
+                  </GENERIC>
+                </DOT>
+                <EXPRESSIONS line="382" col="31">
+                  <EXPRESSION line="382" col="31">
+                    <ADDR line="382" col="31">
+                      <IDENTIFIER line="382" col="32" name="Result"/>
+                    </ADDR>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="384" col="3">
+          <LHS line="384" col="3">
+            <IDENTIFIER line="384" col="3" name="Method"/>
+          </LHS>
+          <RHS line="384" col="13">
+            <EXPRESSION line="384" col="13">
+              <CALL line="384" col="13">
+                <DOT line="384" col="18">
+                  <IDENTIFIER line="384" col="13" name="RType"/>
+                  <IDENTIFIER line="384" col="19" name="GetMethod"/>
+                </DOT>
+                <EXPRESSIONS line="384" col="29">
+                  <EXPRESSION line="384" col="29">
+                    <LITERAL line="384" col="35" value="Read" type="string"/>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="385" col="3">
+          <CALL line="385" col="3">
+            <DOT line="385" col="9">
+              <IDENTIFIER line="385" col="3" name="Method"/>
+              <IDENTIFIER line="385" col="10" name="Invoke"/>
+            </DOT>
+            <EXPRESSIONS line="385" col="17">
+              <EXPRESSION line="385" col="17">
+                <IDENTIFIER line="385" col="17" name="Ptr"/>
+              </EXPRESSION>
+              <EXPRESSION line="385" col="22">
+                <IDENTIFIER line="385" col="22" name="Values"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="389" begin_col="1" end_line="400" end_col="1" name="TRepository&lt;T&gt;.Append" kind="procedure">
+      <PARAMETERS line="389" col="32">
+        <PARAMETER line="389" col="37" kind="var">
+          <NAME line="389" col="37" value="AItem"/>
+          <TYPE line="389" col="44" name="T"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <STATEMENTS begin_line="390" begin_col="1" end_line="397" end_col="4">
+        <CALL line="391" col="3">
+          <CALL line="391" col="3">
+            <IDENTIFIER line="391" col="3" name="d4appendStart"/>
+            <EXPRESSIONS line="391" col="17">
+              <EXPRESSION line="391" col="17">
+                <IDENTIFIER line="391" col="17" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="391" col="25">
+                <LITERAL line="391" col="25" value="0" type="numeric"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <CALL line="392" col="3">
+          <CALL line="392" col="3">
+            <IDENTIFIER line="392" col="3" name="d4blank"/>
+            <EXPRESSIONS line="392" col="11">
+              <EXPRESSION line="392" col="11">
+                <IDENTIFIER line="392" col="11" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <CALL line="394" col="3">
+          <CALL line="394" col="3">
+            <IDENTIFIER line="394" col="3" name="Assign"/>
+            <EXPRESSIONS line="394" col="10">
+              <EXPRESSION line="394" col="10">
+                <IDENTIFIER line="394" col="10" name="AItem"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <CALL line="396" col="3">
+          <CALL line="396" col="3">
+            <IDENTIFIER line="396" col="3" name="d4append"/>
+            <EXPRESSIONS line="396" col="12">
+              <EXPRESSION line="396" col="12">
+                <IDENTIFIER line="396" col="12" name="FTable"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="400" begin_col="1" end_line="418" end_col="1" name="TRepository&lt;T&gt;.Update" kind="procedure">
+      <PARAMETERS line="400" col="32">
+        <PARAMETER line="400" col="37" kind="var">
+          <NAME line="400" col="37" value="AItem"/>
+          <TYPE line="400" col="44" name="T"/>
+        </PARAMETER>
+        <PARAMETER line="400" col="47">
+          <NAME line="400" col="47" value="aId"/>
+          <TYPE line="400" col="52" name="integer"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <VARIABLES line="401" col="1">
+        <VARIABLE line="402" col="3">
+          <NAME line="402" col="3" value="id"/>
+          <TYPE line="402" col="7" name="TCbId"/>
+        </VARIABLE>
+        <VARIABLE line="403" col="3">
+          <NAME line="403" col="3" value="index"/>
+          <TYPE line="403" col="10" name="Pointer"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="404" begin_col="1" end_line="415" end_col="4">
+        <ASSIGN line="405" col="3">
+          <LHS line="405" col="3">
+            <DOT line="405" col="5">
+              <IDENTIFIER line="405" col="3" name="id"/>
+              <IDENTIFIER line="405" col="6" name="Value"/>
+            </DOT>
+          </LHS>
+          <RHS line="405" col="15">
+            <EXPRESSION line="405" col="15">
+              <IDENTIFIER line="405" col="15" name="AId"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="407" col="3">
+          <LHS line="407" col="3">
+            <IDENTIFIER line="407" col="3" name="index"/>
+          </LHS>
+          <RHS line="407" col="12">
+            <EXPRESSION line="407" col="12">
+              <CALL line="407" col="12">
+                <IDENTIFIER line="407" col="12" name="d4tag"/>
+                <EXPRESSIONS line="407" col="18">
+                  <EXPRESSION line="407" col="18">
+                    <IDENTIFIER line="407" col="18" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="407" col="26">
+                    <CALL line="407" col="26">
+                      <IDENTIFIER line="407" col="26" name="PChar"/>
+                      <EXPRESSIONS line="407" col="32">
+                        <EXPRESSION line="407" col="32">
+                          <IDENTIFIER line="407" col="32" name="FIndexName"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <CALL line="408" col="3">
+          <CALL line="408" col="3">
+            <IDENTIFIER line="408" col="3" name="d4tagSelect"/>
+            <EXPRESSIONS line="408" col="15">
+              <EXPRESSION line="408" col="15">
+                <IDENTIFIER line="408" col="15" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="408" col="23">
+                <IDENTIFIER line="408" col="23" name="index"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <IF line="410" col="3">
+          <EXPRESSION line="410" col="6">
+            <NOTEQUAL line="410" col="38">
+              <CALL line="410" col="6">
+                <IDENTIFIER line="410" col="6" name="d4seek"/>
+                <EXPRESSIONS line="410" col="13">
+                  <EXPRESSION line="410" col="13">
+                    <IDENTIFIER line="410" col="13" name="FTable"/>
+                  </EXPRESSION>
+                  <EXPRESSION line="410" col="21">
+                    <CALL line="410" col="21">
+                      <IDENTIFIER line="410" col="21" name="PChar"/>
+                      <EXPRESSIONS line="410" col="27">
+                        <EXPRESSION line="410" col="27">
+                          <DOT line="410" col="29">
+                            <IDENTIFIER line="410" col="27" name="id"/>
+                            <IDENTIFIER line="410" col="30" name="AsStr"/>
+                          </DOT>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+              <IDENTIFIER line="410" col="41" name="r4success"/>
+            </NOTEQUAL>
+          </EXPRESSION>
+          <THEN line="410" col="51">
+            <RAISE line="411" col="5">
+              <EXPRESSION line="411" col="11">
+                <CALL line="411" col="11">
+                  <DOT line="411" col="20">
+                    <IDENTIFIER line="411" col="11" name="Exception"/>
+                    <IDENTIFIER line="411" col="21" name="Create"/>
+                  </DOT>
+                  <EXPRESSIONS line="411" col="28">
+                    <EXPRESSION line="411" col="28">
+                      <ADD line="411" col="75">
+                        <LITERAL line="411" col="75" value="Unable to update record, unable to find id: " type="string"/>
+                        <CALL line="411" col="28">
+                          <IDENTIFIER line="411" col="77" name="IntToStr"/>
+                          <EXPRESSIONS line="411" col="86">
+                            <EXPRESSION line="411" col="86">
+                              <IDENTIFIER line="411" col="86" name="aId"/>
+                            </EXPRESSION>
+                          </EXPRESSIONS>
+                        </CALL>
+                      </ADD>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+              </EXPRESSION>
+            </RAISE>
+          </THEN>
+        </IF>
+        <CALL line="413" col="3">
+          <CALL line="413" col="3">
+            <IDENTIFIER line="413" col="3" name="Assign"/>
+            <EXPRESSIONS line="413" col="10">
+              <EXPRESSION line="413" col="10">
+                <IDENTIFIER line="413" col="10" name="AItem"/>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+        <CALL line="414" col="3">
+          <CALL line="414" col="3">
+            <IDENTIFIER line="414" col="3" name="d4Write"/>
+            <EXPRESSIONS line="414" col="11">
+              <EXPRESSION line="414" col="11">
+                <IDENTIFIER line="414" col="11" name="FTable"/>
+              </EXPRESSION>
+              <EXPRESSION line="414" col="19">
+                <UNARYMINUS line="414" col="19">
+                  <LITERAL line="414" col="20" value="1" type="numeric"/>
+                </UNARYMINUS>
+              </EXPRESSION>
+            </EXPRESSIONS>
+          </CALL>
+        </CALL>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="418" begin_col="1" end_line="454" end_col="1" name="TRepository&lt;T&gt;.Assign" kind="procedure">
+      <PARAMETERS line="418" col="32">
+        <PARAMETER line="418" col="37" kind="var">
+          <NAME line="418" col="37" value="AItem"/>
+          <TYPE line="418" col="44" name="T"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <VARIABLES line="419" col="1">
+        <VARIABLE line="420" col="3">
+          <NAME line="420" col="3" value="context"/>
+          <TYPE line="420" col="12" name="TRttiContext"/>
+        </VARIABLE>
+        <VARIABLE line="421" col="3">
+          <NAME line="421" col="3" value="rtype"/>
+          <TYPE line="421" col="10" name="TRttiType"/>
+        </VARIABLE>
+        <VARIABLE line="422" col="3">
+          <NAME line="422" col="3" value="method"/>
+          <TYPE line="422" col="11" name="TRttiMethod"/>
+        </VARIABLE>
+        <VARIABLE line="423" col="3">
+          <NAME line="423" col="3" value="values"/>
+          <TYPE line="423" col="11" name="TArray">
+            <TYPEARGS line="423" col="18">
+              <TYPE line="423" col="18" name="TValue"/>
+            </TYPEARGS>
+          </TYPE>
+        </VARIABLE>
+        <VARIABLE line="424" col="3">
+          <NAME line="424" col="3" value="value"/>
+          <TYPE line="424" col="10" name="string"/>
+        </VARIABLE>
+        <VARIABLE line="425" col="3">
+          <NAME line="425" col="3" value="ptr"/>
+          <TYPE line="425" col="8" name="TValue"/>
+        </VARIABLE>
+        <VARIABLE line="426" col="3">
+          <NAME line="426" col="3" value="dirty"/>
+          <TYPE line="426" col="10" name="boolean"/>
+        </VARIABLE>
+        <VARIABLE line="427" col="3">
+          <NAME line="427" col="3" value="field"/>
+          <TYPE line="427" col="10" name="TRttiField"/>
+        </VARIABLE>
+      </VARIABLES>
+      <STATEMENTS begin_line="428" begin_col="1" end_line="449" end_col="4">
+        <ASSIGN line="429" col="3">
+          <LHS line="429" col="3">
+            <IDENTIFIER line="429" col="3" name="rtype"/>
+          </LHS>
+          <RHS line="429" col="12">
+            <EXPRESSION line="429" col="12">
+              <CALL line="429" col="12">
+                <DOT line="429" col="19">
+                  <IDENTIFIER line="429" col="12" name="context"/>
+                  <IDENTIFIER line="429" col="20" name="GetType"/>
+                </DOT>
+                <EXPRESSIONS line="429" col="28">
+                  <EXPRESSION line="429" col="28">
+                    <CALL line="429" col="28">
+                      <IDENTIFIER line="429" col="28" name="TypeInfo"/>
+                      <EXPRESSIONS line="429" col="37">
+                        <EXPRESSION line="429" col="37">
+                          <IDENTIFIER line="429" col="37" name="T"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                  </EXPRESSION>
+                </EXPRESSIONS>
+              </CALL>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <FOR line="431" col="3">
+          <IDENTIFIER line="431" col="7" name="field"/>
+          <IN line="431" col="13">
+            <EXPRESSION line="431" col="16">
+              <DOT line="431" col="21">
+                <IDENTIFIER line="431" col="16" name="rType"/>
+                <IDENTIFIER line="431" col="22" name="GetDeclaredFields"/>
+              </DOT>
+            </EXPRESSION>
+          </IN>
+          <STATEMENTS begin_line="431" begin_col="43" end_line="448" end_col="6">
+            <IF line="432" col="5">
+              <EXPRESSION line="432" col="8">
+                <LOWER line="432" col="51">
+                  <CALL line="432" col="8">
+                    <IDENTIFIER line="432" col="8" name="IndexStr"/>
+                    <EXPRESSIONS line="432" col="17">
+                      <EXPRESSION line="432" col="17">
+                        <DOT line="432" col="22">
+                          <IDENTIFIER line="432" col="17" name="field"/>
+                          <DOT line="432" col="32">
+                            <IDENTIFIER line="432" col="23" name="FieldType"/>
+                            <IDENTIFIER line="432" col="33" name="Name"/>
+                          </DOT>
+                        </DOT>
+                      </EXPRESSION>
+                      <EXPRESSION line="432" col="39">
+                        <IDENTIFIER line="432" col="39" name="Properties"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                  <LITERAL line="432" col="53" value="0" type="numeric"/>
+                </LOWER>
+              </EXPRESSION>
+              <THEN line="432" col="55">
+                <CALL line="432" col="60">
+                  <IDENTIFIER line="432" col="60" name="continue"/>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="434" col="5">
+              <LHS line="434" col="5">
+                <IDENTIFIER line="434" col="5" name="ptr"/>
+              </LHS>
+              <RHS line="434" col="12">
+                <EXPRESSION line="434" col="12">
+                  <CALL line="434" col="12">
+                    <DOT line="434" col="17">
+                      <IDENTIFIER line="434" col="12" name="field"/>
+                      <IDENTIFIER line="434" col="18" name="GetValue"/>
+                    </DOT>
+                    <EXPRESSIONS line="434" col="27">
+                      <EXPRESSION line="434" col="27">
+                        <ADDR line="434" col="27">
+                          <IDENTIFIER line="434" col="28" name="AItem"/>
+                        </ADDR>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <ASSIGN line="436" col="5">
+              <LHS line="436" col="5">
+                <IDENTIFIER line="436" col="5" name="method"/>
+              </LHS>
+              <RHS line="436" col="15">
+                <EXPRESSION line="436" col="15">
+                  <CALL line="436" col="15">
+                    <DOT line="436" col="20">
+                      <IDENTIFIER line="436" col="15" name="field"/>
+                      <DOT line="436" col="30">
+                        <IDENTIFIER line="436" col="21" name="FieldType"/>
+                        <IDENTIFIER line="436" col="31" name="GetMethod"/>
+                      </DOT>
+                    </DOT>
+                    <EXPRESSIONS line="436" col="41">
+                      <EXPRESSION line="436" col="41">
+                        <LITERAL line="436" col="53" value="GetIsDirty" type="string"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <ASSIGN line="437" col="5">
+              <LHS line="437" col="5">
+                <IDENTIFIER line="437" col="5" name="dirty"/>
+              </LHS>
+              <RHS line="437" col="14">
+                <EXPRESSION line="437" col="14">
+                  <DOT line="437" col="40">
+                    <CALL line="437" col="14">
+                      <DOT line="437" col="20">
+                        <IDENTIFIER line="437" col="14" name="Method"/>
+                        <IDENTIFIER line="437" col="21" name="Invoke"/>
+                      </DOT>
+                      <EXPRESSIONS line="437" col="28">
+                        <EXPRESSION line="437" col="28">
+                          <IDENTIFIER line="437" col="28" name="Ptr"/>
+                        </EXPRESSION>
+                        <EXPRESSION line="437" col="33">
+                          <IDENTIFIER line="437" col="33" name="values"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                    <IDENTIFIER line="437" col="41" name="AsBoolean"/>
+                  </DOT>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <IF line="439" col="5">
+              <EXPRESSION line="439" col="8">
+                <NOT line="439" col="8">
+                  <IDENTIFIER line="439" col="12" name="dirty"/>
+                </NOT>
+              </EXPRESSION>
+              <THEN line="439" col="18">
+                <CALL line="439" col="23">
+                  <IDENTIFIER line="439" col="23" name="continue"/>
+                </CALL>
+              </THEN>
+            </IF>
+            <ASSIGN line="441" col="5">
+              <LHS line="441" col="5">
+                <IDENTIFIER line="441" col="5" name="method"/>
+              </LHS>
+              <RHS line="441" col="15">
+                <EXPRESSION line="441" col="15">
+                  <CALL line="441" col="15">
+                    <DOT line="441" col="20">
+                      <IDENTIFIER line="441" col="15" name="field"/>
+                      <DOT line="441" col="30">
+                        <IDENTIFIER line="441" col="21" name="FieldType"/>
+                        <IDENTIFIER line="441" col="31" name="GetMethod"/>
+                      </DOT>
+                    </DOT>
+                    <EXPRESSIONS line="441" col="41">
+                      <EXPRESSION line="441" col="41">
+                        <LITERAL line="441" col="48" value="AsStr" type="string"/>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <ASSIGN line="442" col="5">
+              <LHS line="442" col="5">
+                <IDENTIFIER line="442" col="5" name="value"/>
+              </LHS>
+              <RHS line="442" col="14">
+                <EXPRESSION line="442" col="14">
+                  <DOT line="442" col="40">
+                    <CALL line="442" col="14">
+                      <DOT line="442" col="20">
+                        <IDENTIFIER line="442" col="14" name="Method"/>
+                        <IDENTIFIER line="442" col="21" name="Invoke"/>
+                      </DOT>
+                      <EXPRESSIONS line="442" col="28">
+                        <EXPRESSION line="442" col="28">
+                          <IDENTIFIER line="442" col="28" name="Ptr"/>
+                        </EXPRESSION>
+                        <EXPRESSION line="442" col="33">
+                          <IDENTIFIER line="442" col="33" name="values"/>
+                        </EXPRESSION>
+                      </EXPRESSIONS>
+                    </CALL>
+                    <IDENTIFIER line="442" col="41" name="AsString"/>
+                  </DOT>
+                </EXPRESSION>
+              </RHS>
+            </ASSIGN>
+            <IF line="444" col="5">
+              <EXPRESSION line="444" col="8">
+                <EQUAL line="444" col="29">
+                  <DOT line="444" col="13">
+                    <IDENTIFIER line="444" col="8" name="field"/>
+                    <DOT line="444" col="23">
+                      <IDENTIFIER line="444" col="14" name="FieldType"/>
+                      <IDENTIFIER line="444" col="24" name="Name"/>
+                    </DOT>
+                  </DOT>
+                  <LITERAL line="444" col="41" value="TCbMemo" type="string"/>
+                </EQUAL>
+              </EXPRESSION>
+              <THEN line="444" col="41">
+                <CALL line="445" col="7">
+                  <CALL line="445" col="7">
+                    <IDENTIFIER line="445" col="7" name="F4MemoAssign"/>
+                    <EXPRESSIONS line="445" col="20">
+                      <EXPRESSION line="445" col="20">
+                        <INDEXED line="445" col="27">
+                          <EXPRESSION line="445" col="28">
+                            <DOT line="445" col="33">
+                              <IDENTIFIER line="445" col="28" name="field"/>
+                              <IDENTIFIER line="445" col="34" name="Name"/>
+                            </DOT>
+                          </EXPRESSION>
+                          <IDENTIFIER line="445" col="20" name="FFields"/>
+                        </INDEXED>
+                      </EXPRESSION>
+                      <EXPRESSION line="445" col="41">
+                        <CALL line="445" col="41">
+                          <IDENTIFIER line="445" col="41" name="StringChangeAnsi"/>
+                          <EXPRESSIONS line="445" col="58">
+                            <EXPRESSION line="445" col="58">
+                              <IDENTIFIER line="445" col="58" name="Value"/>
+                            </EXPRESSION>
+                          </EXPRESSIONS>
+                        </CALL>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </CALL>
+              </THEN>
+              <ELSE line="446" col="5">
+                <EXPRESSION line="447" col="7">
+                  <CALL line="447" col="7">
+                    <IDENTIFIER line="447" col="7" name="f4assign"/>
+                    <EXPRESSIONS line="447" col="16">
+                      <EXPRESSION line="447" col="16">
+                        <INDEXED line="447" col="23">
+                          <EXPRESSION line="447" col="24">
+                            <DOT line="447" col="29">
+                              <IDENTIFIER line="447" col="24" name="field"/>
+                              <IDENTIFIER line="447" col="30" name="Name"/>
+                            </DOT>
+                          </EXPRESSION>
+                          <IDENTIFIER line="447" col="16" name="FFields"/>
+                        </INDEXED>
+                      </EXPRESSION>
+                      <EXPRESSION line="447" col="37">
+                        <CALL line="447" col="37">
+                          <IDENTIFIER line="447" col="37" name="PChar"/>
+                          <EXPRESSIONS line="447" col="43">
+                            <EXPRESSION line="447" col="43">
+                              <IDENTIFIER line="447" col="43" name="value"/>
+                            </EXPRESSION>
+                          </EXPRESSIONS>
+                        </CALL>
+                      </EXPRESSION>
+                    </EXPRESSIONS>
+                  </CALL>
+                </EXPRESSION>
+              </ELSE>
+            </IF>
+          </STATEMENTS>
+        </FOR>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="454" begin_col="1" end_line="461" end_col="1" name="TRecordAttribute.Create" kind="constructor">
+      <PARAMETERS line="454" col="36">
+        <PARAMETER line="454" col="43" kind="const">
+          <NAME line="454" col="43" value="AFilename"/>
+          <TYPE line="454" col="54" name="string"/>
+        </PARAMETER>
+        <PARAMETER line="454" col="62">
+          <NAME line="454" col="62" value="AIndexName"/>
+          <TYPE line="454" col="74" name="string"/>
+        </PARAMETER>
+      </PARAMETERS>
+      <STATEMENTS begin_line="455" begin_col="1" end_line="458" end_col="4">
+        <ASSIGN line="456" col="3">
+          <LHS line="456" col="3">
+            <IDENTIFIER line="456" col="3" name="FFilename"/>
+          </LHS>
+          <RHS line="456" col="17">
+            <EXPRESSION line="456" col="17">
+              <IDENTIFIER line="456" col="17" name="AFilename"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+        <ASSIGN line="457" col="3">
+          <LHS line="457" col="3">
+            <IDENTIFIER line="457" col="3" name="FIndexName"/>
+          </LHS>
+          <RHS line="457" col="17">
+            <EXPRESSION line="457" col="17">
+              <IDENTIFIER line="457" col="17" name="AIndexName"/>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+    <METHOD begin_line="461" begin_col="1" end_line="466" end_col="1" kind="function" name="TRecordAttribute.GetUseIndex">
+      <RETURNTYPE line="461" col="40">
+        <TYPE line="461" col="40" name="boolean"/>
+      </RETURNTYPE>
+      <STATEMENTS begin_line="462" begin_col="1" end_line="464" end_col="4">
+        <ASSIGN line="463" col="3">
+          <LHS line="463" col="3">
+            <IDENTIFIER line="463" col="3" name="Result"/>
+          </LHS>
+          <RHS line="463" col="13">
+            <EXPRESSION line="463" col="13">
+              <GREATER line="463" col="32">
+                <CALL line="463" col="13">
+                  <IDENTIFIER line="463" col="13" name="Length"/>
+                  <EXPRESSIONS line="463" col="20">
+                    <EXPRESSION line="463" col="20">
+                      <IDENTIFIER line="463" col="20" name="FIndexName"/>
+                    </EXPRESSION>
+                  </EXPRESSIONS>
+                </CALL>
+                <LITERAL line="463" col="34" value="0" type="numeric"/>
+              </GREATER>
+            </EXPRESSION>
+          </RHS>
+        </ASSIGN>
+      </STATEMENTS>
+    </METHOD>
+  </IMPLEMENTATION>
+</UNIT>

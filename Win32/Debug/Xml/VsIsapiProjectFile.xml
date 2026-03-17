@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+    ProjectType="Visual C++"
+    Version="8.00"
+    Name="CustomerPortal"
+    ProjectGUID="{7A4D8B2F-91C4-4C0E-A6A1-2B9A0A8F4D11}"
+    RootNamespace="CustomerPortal"
+    Keyword="AtlProj">
+
+  <Platforms>
+    <Platform
+      Name="Win32"/>
+  </Platforms>
+
+  <ToolFiles>
+  </ToolFiles>
+
+  <Configurations>
+
+    <Configuration
+      Name="Debug|Win32"
+      OutputDirectory="$(SolutionDir)bin\Debug"
+      IntermediateDirectory="$(ConfigurationName)"
+      ConfigurationType="2"
+      UseOfATL="2"
+      ATLMinimizesCRunTimeLibraryUsage="false"
+      CharacterSet="1">
+
+      <Tool
+        Name="VCPreBuildEventTool"/>
+
+      <Tool
+        Name="VCCustomBuildTool"/>
+
+      <Tool
+        Name="VCXMLDataGeneratorTool"/>
+
+      <Tool
+        Name="VCWebServiceProxyGeneratorTool"/>
+
+      <Tool
+        Name="VCMIDLTool"
+        PreprocessorDefinitions="_DEBUG"
+        MkTypLibCompatible="true"
+        SuppressStartupBanner="true"
+        TargetEnvironment="1"
+        TypeLibraryName="$(OutDir)\CustomerPortal.tlb"
+        HeaderFileName="CustomerPortal_i.h"
+        DLLDataFileName=""
+        InterfaceIdentifierFileName="CustomerPortal_i.c"/>
+
+      <Tool
+        Name="VCCLCompilerTool"
+        Optimization="0"
+        AdditionalIncludeDirectories=".\include;.\handlers;.\services"
+        PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL;_ATL_DLL;_ATL_SERVER;CUSTOMERPORTAL_EXPORTS"
+        MinimalRebuild="true"
+        BasicRuntimeChecks="3"
+        RuntimeLibrary="3"
+        UsePrecompiledHeader="2"
+        PrecompiledHeaderThrough="stdafx.h"
+        PrecompiledHeaderFile="$(IntDir)\CustomerPortal.pch"
+        WarningLevel="3"
+        Detect64BitPortabilityProblems="true"
+        DebugInformationFormat="4"/>
+
+      <Tool
+        Name="VCManagedResourceCompilerTool"/>
+
+      <Tool
+        Name="VCResourceCompilerTool"
+        PreprocessorDefinitions="_DEBUG"
+        Culture="1033"
+        AdditionalIncludeDirectories="$(IntDir)"/>
+
+      <Tool
+        Name="VCPreLinkEventTool"/>
+
+      <Tool
+        Name="VCLinkerTool"
+        AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib"
+        OutputFile="$(OutDir)\CustomerPortal.dll"
+        LinkIncremental="2"
+        SuppressStartupBanner="true"
+        ModuleDefinitionFile="CustomerPortal.def"
+        GenerateDebugInformation="true"
+        RegisterOutput="false"
+        SubSystem="2"
+        TargetMachine="1"/>
+
+      <Tool
+        Name="VCALinkTool"/>
+
+      <Tool
+        Name="VCManifestTool"/>
+
+      <Tool
+        Name="VCXDCMakeTool"/>
+
+      <Tool
+        Name="VCBscMakeTool"
+        OutputFile="$(IntDir)\CustomerPortal.bsc"/>
+
+      <Tool
+        Name="VCFxCopTool"/>
+
+      <Tool
+        Name="VCAppVerifierTool"/>
+
+      <Tool
+        Name="VCWebDeploymentTool"/>
+
+      <Tool
+        Name="VCPostBuildEventTool"
+        CommandLine="copy /Y &quot;$(TargetPath)&quot; &quot;C:\Inetpub\wwwroot\bin\CustomerPortal.dll&quot;"/>
+    </Configuration>
+
+    <Configuration
+      Name="Release|Win32"
+      OutputDirectory="$(SolutionDir)bin\Release"
+      IntermediateDirectory="$(ConfigurationName)"
+      ConfigurationType="2"
+      UseOfATL="2"
+      ATLMinimizesCRunTimeLibraryUsage="false"
+      CharacterSet="1"
+      WholeProgramOptimization="1">
+
+      <Tool
+        Name="VCPreBuildEventTool"/>
+
+      <Tool
+        Name="VCCustomBuildTool"/>
+
+      <Tool
+        Name="VCXMLDataGeneratorTool"/>
+
+      <Tool
+        Name="VCWebServiceProxyGeneratorTool"/>
+
+      <Tool
+        Name="VCMIDLTool"
+        MkTypLibCompatible="true"
+        SuppressStartupBanner="true"
+        TargetEnvironment="1"
+        TypeLibraryName="$(OutDir)\CustomerPortal.tlb"
+        HeaderFileName="CustomerPortal_i.h"
+        DLLDataFileName=""
+        InterfaceIdentifierFileName="CustomerPortal_i.c"/>
+
+      <Tool
+        Name="VCCLCompilerTool"
+        Optimization="2"
+        EnableIntrinsicFunctions="true"
+        AdditionalIncludeDirectories=".\include;.\handlers;.\services"
+        PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_ATL_DLL;_ATL_SERVER;CUSTOMERPORTAL_EXPORTS"
+        RuntimeLibrary="2"
+        UsePrecompiledHeader="2"
+        PrecompiledHeaderThrough="stdafx.h"
+        PrecompiledHeaderFile="$(IntDir)\CustomerPortal.pch"
+        WarningLevel="3"
+        Detect64BitPortabilityProblems="false"
+        DebugInformationFormat="3"/>
+
+      <Tool
+        Name="VCManagedResourceCompilerTool"/>
+
+      <Tool
+        Name="VCResourceCompilerTool"
+        PreprocessorDefinitions="NDEBUG"
+        Culture="1033"
+        AdditionalIncludeDirectories="$(IntDir)"/>
+
+      <Tool
+        Name="VCPreLinkEventTool"/>
+
+      <Tool
+        Name="VCLinkerTool"
+        AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib"
+        OutputFile="$(OutDir)\CustomerPortal.dll"
+        LinkIncremental="1"
+        SuppressStartupBanner="true"
+        ModuleDefinitionFile="CustomerPortal.def"
+        GenerateDebugInformation="true"
+        SubSystem="2"
+        OptimizeReferences="2"
+        EnableCOMDATFolding="2"
+        TargetMachine="1"/>
+
+      <Tool
+        Name="VCALinkTool"/>
+
+      <Tool
+        Name="VCManifestTool"/>
+
+      <Tool
+        Name="VCXDCMakeTool"/>
+
+      <Tool
+        Name="VCBscMakeTool"/>
+
+      <Tool
+        Name="VCFxCopTool"/>
+
+      <Tool
+        Name="VCAppVerifierTool"/>
+
+      <Tool
+        Name="VCWebDeploymentTool"/>
+
+      <Tool
+        Name="VCPostBuildEventTool"
+        CommandLine="copy /Y &quot;$(TargetPath)&quot; &quot;C:\Inetpub\wwwroot\bin\CustomerPortal.dll&quot;"/>
+    </Configuration>
+
+  </Configurations>
+
+  <References>
+  </References>
+
+  <Files>
+
+    <Filter
+      Name="Source Files"
+      Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx">
+
+      <File RelativePath=".\StdAfx.cpp">
+        <FileConfiguration
+          Name="Debug|Win32">
+          <Tool
+            Name="VCCLCompilerTool"
+            UsePrecompiledHeader="1"/>
+        </FileConfiguration>
+        <FileConfiguration
+          Name="Release|Win32">
+          <Tool
+            Name="VCCLCompilerTool"
+            UsePrecompiledHeader="1"/>
+        </FileConfiguration>
+      </File>
+
+      <File RelativePath=".\CustomerPortal.cpp"/>
+      <File RelativePath=".\CustomerPortal.def"/>
+      <File RelativePath=".\CustomerPortal.idl"/>
+      <File RelativePath=".\HttpExtension.cpp"/>
+      <File RelativePath=".\SessionManager.cpp"/>
+      <File RelativePath=".\CustomerService.cpp"/>
+
+    </Filter>
+
+    <Filter
+      Name="Header Files"
+      Filter="h;hpp;hxx;hm;inl;inc;xsd">
+
+      <File RelativePath=".\StdAfx.h"/>
+      <File RelativePath=".\resource.h"/>
+      <File RelativePath=".\CustomerPortal.h"/>
+      <File RelativePath=".\HttpExtension.h"/>
+      <File RelativePath=".\SessionManager.h"/>
+      <File RelativePath=".\CustomerService.h"/>
+      <File RelativePath=".\CustomerPortal_i.h"/>
+
+    </Filter>
+
+    <Filter
+      Name="Resource Files"
+      Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+
+      <File RelativePath=".\CustomerPortal.rc"/>
+      <File RelativePath=".\CustomerPortal.rgs"/>
+      <File RelativePath=".\res\CustomerPortal.ico"/>
+
+    </Filter>
+
+    <Filter
+      Name="SRF Files"
+      Filter="srf">
+
+      <File RelativePath=".\templates\Login.srf"/>
+      <File RelativePath=".\templates\CustomerSearch.srf"/>
+      <File RelativePath=".\templates\CustomerDetails.srf"/>
+
+    </Filter>
+
+  </Files>
+
+  <Globals>
+  </Globals>
+</VisualStudioProject>
