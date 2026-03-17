@@ -13,8 +13,6 @@ type
     OkButton: TButton;
     Panel2: TPanel;
     SpeedButton1: TSpeedButton;
-    Image1: TImage;
-    Bevel1: TBevel;
   private
     { Private declarations }
   public
