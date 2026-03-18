@@ -24,8 +24,6 @@ object AboutForm: TAboutForm
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 716
-    ExplicitHeight = 370
     object mmoAbout: TMemo
       Left = 4
       Top = 6
@@ -51,7 +49,7 @@ object AboutForm: TAboutForm
         'The last examples demonstrate creating a TBvElement from '
         'an XML file, and converting the element back to XML.'
         ''
-        'TBvParser offers essential non-validation XML support. '
+        'TBvParser offers essential non-validating XML support. '
         ''
         'These types are not designed to compete with existing types,'
         'but to offer lightweight convenient solutions where suitable.')
@@ -82,7 +80,6 @@ object AboutForm: TAboutForm
     Caption = '  About XmlDemo'
     ShowCaption = False
     TabOrder = 1
-    ExplicitWidth = 716
     object SpeedButton1: TSpeedButton
       Left = 0
       Top = 0

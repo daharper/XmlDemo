@@ -1,4 +1,4 @@
-unit Utils.XmlRegistry;
+unit Utils.CodeRegistry;
 
 interface
 
@@ -23,13 +23,13 @@ type
     xdIsapi
   );
 
-  TXmlRegistry = class
+  TCodeRegistry = class
   strict private
     fPath: string;
     fXml:  TDictionary<TXmlDemo, string>;
     fCode: TDictionary<TXmlDemo, string>;
   private
-    class var fInstance: TXmlRegistry;
+    class var fInstance: TCodeRegistry;
 
     function GetPath(const aName: string): string;
     function GetCode(const aDemo: TXmlDemo): string;
@@ -67,7 +67,7 @@ type
     IsActive: Boolean;
   end;
 
-  function XmlRegistry: TXmlRegistry;
+  function CodeRegistry: TCodeRegistry;
 
 var
   SysUsers: array[0..4] of TSysUser = (
@@ -87,15 +87,15 @@ uses
   Base.XML;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function XmlRegistry: TXmlRegistry;
+function CodeRegistry: TCodeRegistry;
 begin
-  Result := TXmlRegistry.fInstance;
+  Result := TCodeRegistry.fInstance;
 end;
 
-{ TXmlRegistry }
+{ TCodeRegistry }
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCar;
+procedure TCodeRegistry.BuildCar;
 const
   CODE = '''
          { simple case }
@@ -114,7 +114,7 @@ const
 begin
   var car := TXml.New('car');
 
-  car.id := 'CAR-1001';
+  car.id    := 'CAR-1001';
   car.make  := 'Toyota';
   car.model := 'Corolla';
   car.year  := 2022;
@@ -128,7 +128,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCar2;
+procedure TCodeRegistry.BuildCar2;
 const
   CODE = '''
          { simple case with an attribute, option 1 - push an attribute }
@@ -163,7 +163,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCar3;
+procedure TCodeRegistry.BuildCar3;
 const
   CODE = '''
          { simple case with an attribute, option 2 - use an "envelope" element }
@@ -198,7 +198,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCustomer;
+procedure TCodeRegistry.BuildCustomer;
 const
   CODE = '''
          { simple case with an attribute, option 3 - use an envelope with variable }
@@ -241,7 +241,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCustomer2;
+procedure TCodeRegistry.BuildCustomer2;
 const
   CODE = '''
          { simple case with an attribute, option 4 - push attributes with variable }
@@ -278,7 +278,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildUsers;
+procedure TCodeRegistry.BuildUsers;
 const
   CODE = '''
          { Building a list of users }
@@ -319,7 +319,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildMessageStanza;
+procedure TCodeRegistry.BuildMessageStanza;
 const
   CODE = '''
          { XMPP Message Stanza }
@@ -354,7 +354,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildPresenceStanza;
+procedure TCodeRegistry.BuildPresenceStanza;
 const
   CODE = '''
          { XMPP Presence Stanza }
@@ -399,7 +399,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildIqStanza;
+procedure TCodeRegistry.BuildIqStanza;
 const
   CODE = '''
          { XMPP IQ Stanza }
@@ -490,7 +490,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildConfigFile;
+procedure TCodeRegistry.BuildConfigFile;
 const
   CODE = '''
          { C# App.config via DSL and Fluent Builder mixed approach }
@@ -585,10 +585,10 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildCustomerOrder;
+procedure TCodeRegistry.BuildCustomerOrder;
 const
   CODE = '''
-         { Customer Order via a Fluent Builder approach }
+         { Customer Order via a Fluent Builder only approach }
 
          var _ := TXml.New;
 
@@ -650,7 +650,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.BuildFromFile(const aDescription: string; const aFilename: string; const aDemo: TXmlDemo);
+procedure TCodeRegistry.BuildFromFile(const aDescription: string; const aFilename: string; const aDemo: TXmlDemo);
 const
   CODE = '''
          { Loading %s file into an IBvElement }
@@ -680,37 +680,37 @@ end;
 
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TXmlRegistry.GetCode(const aDemo: TXmlDemo): string;
+function TCodeRegistry.GetCode(const aDemo: TXmlDemo): string;
 begin
   fCode.TryGetValue(aDemo, Result);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.SetCode(const aDemo: TXmlDemo; const aValue: string);
+procedure TCodeRegistry.SetCode(const aDemo: TXmlDemo; const aValue: string);
 begin
   fCode[aDemo] := aValue;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TXmlRegistry.GetPath(const aName: string): string;
+function TCodeRegistry.GetPath(const aName: string): string;
 begin
   Result := TPath.Combine(fPath, aName);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TXmlRegistry.GetXml(const aDemo: TXmlDemo): string;
+function TCodeRegistry.GetXml(const aDemo: TXmlDemo): string;
 begin
   fXml.TryGetValue(aDemo, Result);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TXmlRegistry.SetXml(const aDemo: TXmlDemo; const aValue: string);
+procedure TCodeRegistry.SetXml(const aDemo: TXmlDemo; const aValue: string);
 begin
   fXml[aDemo] := aValue;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TXmlRegistry.Create;
+constructor TCodeRegistry.Create;
 begin
   fPath := TPath.Combine(ExtractFileDir(ParamStr(0)), 'Xml');
 
@@ -735,20 +735,20 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-destructor TXmlRegistry.Destroy;
+destructor TCodeRegistry.Destroy;
 begin
   fXml.Free;
   fCode.Free;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-class constructor TXmlRegistry.Create;
+class constructor TCodeRegistry.Create;
 begin
-  fInstance := TXmlRegistry.Create;
+  fInstance := TCodeRegistry.Create;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-class destructor TXmlRegistry.Destroy;
+class destructor TCodeRegistry.Destroy;
 begin
   FreeAndNil(fInstance);
 end;

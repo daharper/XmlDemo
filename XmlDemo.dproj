@@ -138,7 +138,7 @@
         <DCCReference Include="Base\Base.Conversions.pas"/>
         <DCCReference Include="Base\Base.Messaging.pas"/>
         <DCCReference Include="Base\Base.Reflection.pas"/>
-        <DCCReference Include="Utils\Utils.XmlRegistry.pas"/>
+        <DCCReference Include="Utils\Utils.CodeRegistry.pas"/>
         <DCCReference Include="Forms\Forms.About.pas">
             <Form>AboutForm</Form>
             <FormType>dfm</FormType>

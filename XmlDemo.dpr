@@ -12,7 +12,7 @@ uses
   Base.Reflection in 'Base\Base.Reflection.pas',
   Vcl.Themes,
   Vcl.Styles,
-  Utils.XmlRegistry in 'Utils\Utils.XmlRegistry.pas',
+  Utils.CodeRegistry in 'Utils\Utils.CodeRegistry.pas',
   Forms.About in 'Forms\Forms.About.pas' {AboutForm};
 
 {$R *.res}

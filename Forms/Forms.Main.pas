@@ -72,7 +72,7 @@ uses
   System.Threading,
   Base.Integrity,
   Base.Xml,
-  Utils.XmlRegistry,
+  Utils.CodeRegistry,
   Forms.About;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -81,8 +81,8 @@ begin
   var button := Sender as TToolButton;
   var id     := button.Tag;
   var demo   := TXmlDemo(id);
-  var xml    := XmlRegistry.Xml[demo];
-  var code   := XmlRegistry.Code[demo];
+  var xml    := CodeRegistry.Xml[demo];
+  var code   := CodeRegistry.Code[demo];
 
   SetContent(Browser, xml);
   SetContent(CodeBrowser, code);
